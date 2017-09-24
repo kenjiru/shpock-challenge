@@ -1,6 +1,8 @@
 import * as React from "react";
 import { Component, ReactElement } from "react";
 
+import Section from "../section/Section";
+
 import "./Filters.css";
 
 class Filters extends Component<IFiltersProps, IFiltersState> {
@@ -9,7 +11,13 @@ class Filters extends Component<IFiltersProps, IFiltersState> {
             <div className="filters">
                 <div className="filters-title">Filters</div>
                 <div className="content">
-                    Content
+                    <Section
+                        icon="date.png"
+                        title="Listed in the last"
+                        titleRight="forever"
+                    >
+                        Section
+                    </Section>
                 </div>
             </div>
         );

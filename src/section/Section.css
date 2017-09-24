@@ -1,0 +1,21 @@
+.section .section-header {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 4px;
+}
+
+.section .section-header .section-title {
+    font-weight: bold;
+    flex-grow: 2;
+    line-height: 24px;
+}
+
+.section .section-header .section-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}
+
+.section .section-content {
+    margin: 8px 0 8px 32px;
+}
