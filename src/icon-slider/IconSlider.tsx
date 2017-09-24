@@ -1,0 +1,33 @@
+import * as React from "react";
+import { Component, ReactElement } from "react";
+import { Slider, SliderProps } from "material-ui";
+
+import "./IconSlider.css";
+
+class IconSlider extends Component<IIconSliderProps> {
+    private sliderStyle: Object = {
+        marginTop: "3px",
+        marginBottom: 0
+    };
+
+    public render(): ReactElement<HTMLElement> {
+        const {iconLeft, iconRight, ...props} = this.props;
+
+        return (
+            <div className="icon-slider">
+                <img className="icon icon-left" src={"img/" + this.props.iconLeft}/>
+                <div className="slider">
+                    <Slider sliderStyle={this.sliderStyle} {...props}/>
+                </div>
+                <img className="icon icon-right" src={"img/" + this.props.iconRight}/>
+            </div>
+        );
+    }
+}
+
+interface IIconSliderProps extends SliderProps {
+    iconLeft: string;
+    iconRight: string;
+}
+
+export default IconSlider;

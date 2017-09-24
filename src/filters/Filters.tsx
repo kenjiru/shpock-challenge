@@ -2,6 +2,7 @@ import * as React from "react";
 import { Component, ReactElement } from "react";
 
 import Section from "../section/Section";
+import IconSlider from "../icon-slider/IconSlider";
 
 import "./Filters.css";
 
@@ -16,7 +17,11 @@ class Filters extends Component<IFiltersProps, IFiltersState> {
                         title="Listed in the last"
                         titleRight="forever"
                     >
-                        Section
+                        <IconSlider
+                            iconLeft="egg.png"
+                            iconRight="dino.png"
+                            step={0.20}
+                        />
                     </Section>
                 </div>
             </div>
