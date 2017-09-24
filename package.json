@@ -7,7 +7,9 @@
     "material-ui": "^0.19.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-scripts-ts": "2.7.0"
+    "react-google-maps": "^8.3.0",
+    "react-scripts-ts": "2.7.0",
+    "recompose": "^0.25.0"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.3",
@@ -15,7 +17,8 @@
     "@types/material-ui": "^0.18.1",
     "@types/node": "^8.0.30",
     "@types/react": "^16.0.5",
-    "@types/react-dom": "^15.5.4"
+    "@types/react-dom": "^15.5.4",
+    "@types/recompose": "^0.24.1"
   },
   "scripts": {
     "start": "react-scripts-ts start",
