@@ -7,6 +7,7 @@ import Section from "../section/Section";
 import IconSlider from "../icon-slider/IconSlider";
 import RaisedRadioButton from "../raised-radio-button/RaisedRadioButton";
 import RaisedCheckbox from "../raised-checkbox/RaisedCheckbox";
+import LocationMap from "../location-map/LocationMap";
 
 import "./Filters.css";
 
@@ -48,6 +49,7 @@ class Filters extends Component<IFiltersProps, IFiltersState> {
 
                     <Section className="filter-location" icon="location.png" title="Current location">
                         <div className="label">Tap on the map to change the location</div>
+                        <LocationMap/>
                     </Section>
 
                     <Section icon="category.png" title="Choose categories">
