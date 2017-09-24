@@ -1,7 +1,10 @@
-.filters .filters-title {
-    color: rgba(0, 0, 0, 0.8);
+.filters .title {
+    margin-left: 32px;
+    margin-bottom: 8px;
     padding: 12px 0;
     font-size: large;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.8);
 }
 
 .filters .section {
@@ -24,4 +27,21 @@
 
 .filters .section-content .raised-checkbox {
     height: 28px;
+}
+
+.filters .filter-location .label {
+    font-size: 12px;
+    color: #b1b1b1;
+}
+
+.filters .filter-price .min-price {
+    margin-right: 10px;
+}
+
+.filters .min-price, .filters .max-price {
+    max-width: 210px;
+}
+
+.filters .clear-button-container {
+    text-align: center;
 }

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Component, ReactElement } from "react";
-import { Toggle } from "material-ui";
+import { RaisedButton, TextField, Toggle } from "material-ui";
 import ClearFix from "material-ui/internal/ClearFix";
 
 import Section from "../section/Section";
@@ -14,7 +14,7 @@ class Filters extends Component<IFiltersProps, IFiltersState> {
     public render(): ReactElement<HTMLElement> {
         return (
             <div className="filters">
-                <div className="filters-title">Filters</div>
+                <div className="title">Filters</div>
                 <div className="content">
                     <Section
                         icon="date.png"
@@ -46,6 +46,10 @@ class Filters extends Component<IFiltersProps, IFiltersState> {
                         titleRight={<Toggle/>}
                     />
 
+                    <Section className="filter-location" icon="location.png" title="Current location">
+                        <div className="label">Tap on the map to change the location</div>
+                    </Section>
+
                     <Section icon="category.png" title="Choose categories">
                         <RaisedCheckbox label="Everything"/>
                         <RaisedCheckbox label="New in your area"/>
@@ -59,6 +63,15 @@ class Filters extends Component<IFiltersProps, IFiltersState> {
                         <RaisedCheckbox label="Services"/>
                         <RaisedCheckbox label="Other"/>
                     </Section>
+
+                    <Section className="filter-price" icon="price.png" title="Set your price range">
+                        <TextField className="min-price" floatingLabelText="Min. price"/>
+                        <TextField className="max-price" floatingLabelText="Max. price"/>
+                    </Section>
+
+                    <div className="clear-button-container">
+                        <RaisedButton label="Clear Filters" secondary={true}/>
+                    </div>
                 </div>
             </div>
         );
