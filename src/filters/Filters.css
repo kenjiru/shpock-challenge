@@ -1,0 +1,27 @@
+.filters .filters-title {
+    color: rgba(0, 0, 0, 0.8);
+    padding: 12px 0;
+    font-size: large;
+}
+
+.filters .section {
+    margin-bottom: 18px;
+}
+
+.filters .section-content:after {
+    content: ".";
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+.filters .section-content .raised-radio-button,
+.filters .section-content .raised-checkbox {
+    width: 200px;
+    float: left;
+}
+
+.filters .section-content .raised-checkbox {
+    height: 28px;
+}

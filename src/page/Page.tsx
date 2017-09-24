@@ -2,6 +2,8 @@ import * as React from "react";
 import { Component, ReactElement } from "react";
 import { Card, CardHeader, CardText, TextField } from "material-ui";
 
+import Filters from "../filters/Filters";
+
 import "./Page.css";
 
 class Page extends Component<IPageProps, IPageState> {
@@ -23,6 +25,7 @@ class Page extends Component<IPageProps, IPageState> {
                         hintText="Search"
                         fullWidth={true}
                     />
+                    <Filters/>
                 </CardText>
             </Card>
         );
