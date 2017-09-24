@@ -3,12 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "classnames": "^2.2.5",
     "material-ui": "^0.19.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-scripts-ts": "2.7.0"
   },
   "devDependencies": {
+    "@types/classnames": "^2.2.3",
     "@types/jest": "^21.1.0",
     "@types/material-ui": "^0.18.1",
     "@types/node": "^8.0.30",
