@@ -8,15 +8,13 @@ import RaisedContainer from "../raised-container/RaisedContainer";
 
 class RaisedCheckbox extends Component<IRaisedCheckboxProps, IRaisedCheckboxState> {
     public render(): ReactElement<HTMLElement> {
-        const {checked, ...props} = this.props;
-
         return (
             <RaisedContainer
                 className={this.getClassName()}
-                checked={checked}
+                checked={this.props.checked}
             >
                 <Checkbox
-                    {...props}
+                    {...this.props}
                     iconStyle={this.getIconStyle()}
                     labelStyle={this.getLabelStyle()}
                 />

@@ -3,7 +3,7 @@ import { Component, ReactElement } from "react";
 
 import MapWithMarker from "./MapWithMarker";
 
-class LocationMap extends Component<ILocationMapProps, ILocationMapState> {
+class LocationMap extends Component<ILocationMapProps> {
     public render(): ReactElement<HTMLElement> {
         return (
             <div className="location-map">
@@ -12,16 +12,17 @@ class LocationMap extends Component<ILocationMapProps, ILocationMapState> {
                     loadingElement={<div style={{height: `100%`}}/>}
                     containerElement={<div style={{height: `300px`}}/>}
                     mapElement={<div style={{height: `100%`}}/>}
+                    address={this.props.address}
+                    onChange={this.props.onChange}
                 />
             </div>
         );
     }
 }
 
-interface ILocationMapState {
-}
-
 interface ILocationMapProps {
+    address: string;
+    onChange: (address: string) => void;
 }
 
 export default LocationMap;

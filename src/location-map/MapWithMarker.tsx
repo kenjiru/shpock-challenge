@@ -32,6 +32,8 @@ interface IMapWithMarkerProps {
     loadingElement?: ReactElement<HTMLElement>;
     containerElement?: ReactElement<HTMLElement>;
     mapElement?: ReactElement<HTMLElement>;
+    address?: string;
+    onChange?: (address: string) => void;
 }
 
 export default MapWithMarker;

@@ -7,15 +7,13 @@ import { grey700 } from "material-ui/styles/colors";
 
 class RaisedRadioButton extends Component<IRaisedRadioButtonProps, IRaisedRadioButtonState> {
     public render(): ReactElement<HTMLElement> {
-        const {checked, ...props} = this.props;
-
         return (
             <RaisedContainer
                 className={this.getClassName()}
-                checked={checked}
+                checked={this.props.checked}
             >
                 <RadioButton
-                    {...props}
+                    {...this.props}
                     iconStyle={this.getIconStyle()}
                     labelStyle={this.getLabelStyle()}
                 />
