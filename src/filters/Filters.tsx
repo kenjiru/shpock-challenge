@@ -6,6 +6,7 @@ import DateRange from "./sections/DateRange";
 import Radius from "./sections/Radius";
 import SortedBy from "./sections/SortedBy";
 import Category from "./sections/Category";
+import SubCategory from "./sections/SubCategory";
 import Price from "./sections/Price";
 import Location from "./sections/Location";
 
@@ -15,7 +16,8 @@ class Filters extends Component<IFiltersProps, IFiltersState> {
     public state: IFiltersState = {
         dateRange: 0,
         radius: 0,
-        categories: [],
+        categories: ["evr"],
+        subCategory: "evr",
         address: "Vienna, Austria"
     };
 
@@ -48,9 +50,10 @@ class Filters extends Component<IFiltersProps, IFiltersState> {
 
                     <Category
                         selectedCategories={this.state.categories}
-                        selectedSubCategory={this.state.subCategory}
                         onChange={this.handleCategoryChange}
                     />
+
+                    {this.renderSubCategory()}
 
                     <Price
                         minValue={this.state.minValue}
@@ -63,6 +66,20 @@ class Filters extends Component<IFiltersProps, IFiltersState> {
                     </div>
                 </div>
             </div>
+        );
+    }
+
+    private renderSubCategory(): ReactElement<SubCategory> {
+        if (this.hasSubCategories(this.state.categories[0]) === false) {
+            return undefined;
+        }
+
+        return (
+            <SubCategory
+                selectedCategory={this.state.categories[0]}
+                selectedSubCategory={this.state.subCategory}
+                onChange={this.handleSubCategoryChange}
+            />
         );
     }
 
@@ -79,9 +96,14 @@ class Filters extends Component<IFiltersProps, IFiltersState> {
         });
     }
 
-    private handleCategoryChange = (categories: string[], subCategory: string): void => {
+    private handleCategoryChange = (categories: string[]): void => {
         this.setState({
-            categories,
+            categories
+        });
+    }
+
+    private handleSubCategoryChange = (subCategory: string): void => {
+        this.setState({
             subCategory
         });
     }
@@ -102,6 +124,10 @@ class Filters extends Component<IFiltersProps, IFiltersState> {
         this.setState({
             radius
         });
+    }
+
+    private hasSubCategories(category: string): boolean {
+        return category === "auto" || category === "property";
     }
 }
 
