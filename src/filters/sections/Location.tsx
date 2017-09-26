@@ -6,8 +6,11 @@ import Section from "../../section/Section";
 import LocationMap from "../../location-map/LocationMap";
 
 class Location extends Component<ILocationProps, ILocationState> {
+    private static EMPTY_LOCATION_TITLE: string = "Current location";
+
     public state: ILocationState = {
-        ownCountry: true
+        ownCountry: true,
+        locationTitle: Location.EMPTY_LOCATION_TITLE
     };
 
     public render(): ReactElement<HTMLElement> {
@@ -23,12 +26,12 @@ class Location extends Component<ILocationProps, ILocationState> {
                 <Section
                     className="filter-location"
                     icon="location.png"
-                    title="Current location"
+                    title={this.state.locationTitle}
                 >
                     <div className="label">Tap on the map to change the location</div>
                     <LocationMap
                         address={this.props.address}
-                        onChange={this.props.onChange}
+                        onChange={this.handleAddressChange}
                     />
                 </Section>
             </div>
@@ -44,6 +47,12 @@ class Location extends Component<ILocationProps, ILocationState> {
         );
     }
 
+    private handleAddressChange = (address: string): void => {
+        this.setState({
+            locationTitle: address
+        });
+    }
+
     private handleToggleOwnCountry = (ev: React.MouseEvent<{}>, ownCountry: boolean): void => {
         this.setState({
             ownCountry
@@ -53,6 +62,7 @@ class Location extends Component<ILocationProps, ILocationState> {
 
 interface ILocationState {
     ownCountry?: boolean;
+    locationTitle?: string;
 }
 
 interface ILocationProps {
