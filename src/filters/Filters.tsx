@@ -47,7 +47,8 @@ class Filters extends Component<IFiltersProps, IFiltersState> {
                     />
 
                     <Category
-                        selectedValues={this.state.categories}
+                        selectedCategories={this.state.categories}
+                        selectedSubCategory={this.state.subCategory}
                         onChange={this.handleCategoryChange}
                     />
 
@@ -78,9 +79,10 @@ class Filters extends Component<IFiltersProps, IFiltersState> {
         });
     }
 
-    private handleCategoryChange = (categories: string[]): void => {
+    private handleCategoryChange = (categories: string[], subCategory: string): void => {
         this.setState({
-            categories
+            categories,
+            subCategory
         });
     }
 
@@ -108,6 +110,7 @@ interface IFiltersState {
     radius?: number;
     sortedBy?: string;
     categories?: string[];
+    subCategory?: string;
     minValue?: number;
     maxValue?: number;
     address?: string;
