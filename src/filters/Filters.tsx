@@ -9,6 +9,7 @@ import Category from "./sections/Category";
 import SubCategory from "./sections/SubCategory";
 import Price from "./sections/Price";
 import Location from "./sections/Location";
+import CarDetails, { ICarDetails } from "./sections/car-details/CarDetails";
 
 import "./Filters.css";
 
@@ -18,7 +19,8 @@ class Filters extends Component<IFiltersProps, IFiltersState> {
         radius: 0,
         categories: ["evr"],
         subCategory: "evr",
-        address: "Vienna, Austria"
+        address: "Vienna, Austria",
+        car: {} as ICarDetails
     };
 
     public render(): ReactElement<HTMLElement> {
@@ -54,6 +56,7 @@ class Filters extends Component<IFiltersProps, IFiltersState> {
                     />
 
                     {this.renderSubCategory()}
+                    {this.renderCarDetails()}
 
                     <Price
                         minValue={this.state.minValue}
@@ -80,6 +83,16 @@ class Filters extends Component<IFiltersProps, IFiltersState> {
                 selectedSubCategory={this.state.subCategory}
                 onChange={this.handleSubCategoryChange}
             />
+        );
+    }
+
+    private renderCarDetails(): ReactElement<CarDetails> {
+        if (this.state.subCategory !== "cars") {
+            return undefined;
+        }
+
+        return (
+            <CarDetails {...this.state.car}/>
         );
     }
 
@@ -137,6 +150,7 @@ interface IFiltersState {
     sortedBy?: string;
     categories?: string[];
     subCategory?: string;
+    car?: ICarDetails;
     minValue?: number;
     maxValue?: number;
     address?: string;
