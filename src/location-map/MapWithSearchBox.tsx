@@ -18,7 +18,8 @@ interface IMapWithSearchBoxProps {
     onMapMounted?: any;
     onBoundsChanged?: any;
     onSearchBoxMounted?: any;
-    onPlacesChanged?: any;
+    onSearchPlacesChanged?: any;
+    onMapClicked?: any;
     onAddressChange?: (msg: string) => void;
 }
 
@@ -45,7 +46,7 @@ const MapWithASearchBox: ComponentClass<IMapWithSearchBoxProps> = compose(
                 onSearchBoxMounted: (ref: any) => {
                     refs.searchBox = ref;
                 },
-                onPlacesChanged: () => {
+                onSearchPlacesChanged: () => {
                     const places = refs.searchBox.getPlaces();
                     const bounds = new google.maps.LatLngBounds();
 
@@ -78,6 +79,29 @@ const MapWithASearchBox: ComponentClass<IMapWithSearchBoxProps> = compose(
                     let props: any = this.props;
                     props.onAddressChange(places[0].formatted_address);
                 },
+
+                onMapClicked: (event: any) => {
+                    this.setState({
+                        clickMarkerPosition: event.latLng,
+                        markers: [{
+                            position: event.latLng
+                        }]
+                    });
+
+                    let geocoder: any = new google.maps.Geocoder();
+
+                    geocoder.geocode({
+                        "latLng": event.latLng
+                    }, (results: any, status: any) => {
+                        if (status == google.maps.GeocoderStatus.OK) {
+                            if (results[0]) {
+                                let props: any = this.props;
+
+                                props.onAddressChange(results[0].formatted_address);
+                            }
+                        }
+                    });
+                }
             });
         },
     }),
@@ -89,13 +113,14 @@ const MapWithASearchBox: ComponentClass<IMapWithSearchBoxProps> = compose(
         defaultZoom={15}
         center={props.center}
         onBoundsChanged={props.onBoundsChanged}
+        onClick={props.onMapClicked}
         defaultCenter={{lat: 48.194, lng: 16.377}}
     >
         <SearchBox
             ref={props.onSearchBoxMounted}
             bounds={props.bounds}
             controlPosition={google.maps.ControlPosition.TOP_LEFT}
-            onPlacesChanged={props.onPlacesChanged}
+            onPlacesChanged={props.onSearchPlacesChanged}
         >
             <input
                 type="text"
