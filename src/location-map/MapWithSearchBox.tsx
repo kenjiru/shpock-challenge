@@ -1,9 +1,9 @@
 /* tslint:disable:no-any */
 import * as React from "react";
 import { ComponentClass, ReactElement, ReactNode } from "react";
-import { compose, lifecycle } from "recompose";
+import { compose, lifecycle, withProps } from "recompose";
 
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
+import { withScriptjs, withGoogleMap, GoogleMap, Marker, Circle } from "react-google-maps";
 import SearchBox from "react-google-maps/lib/components/places/SearchBox";
 
 interface IMapWithSearchBoxProps {
@@ -13,6 +13,8 @@ interface IMapWithSearchBoxProps {
     containerElement?: ReactElement<HTMLElement>;
     mapElement?: ReactElement<HTMLElement>;
     center?: any;
+    circleRadius?: number;
+    zoom?: number;
     bounds?: any;
     markers?: any[];
     onMapMounted?: any;
@@ -23,16 +25,22 @@ interface IMapWithSearchBoxProps {
     onAddressChange?: (msg: string) => void;
 }
 
+const DEFAULT_ZOOM: number = 12;
+
 const MapWithASearchBox: ComponentClass<IMapWithSearchBoxProps> = compose(
+    withProps((props: IMapWithSearchBoxProps) => ({
+        center: {
+            lat: 48.2082,
+            lng: 16.3738
+        },
+        zoom: radiusToZoom(props.circleRadius)
+    })),
     lifecycle({
         componentWillMount() {
             const refs: any = {};
 
             this.setState({
                 bounds: null,
-                center: {
-                    lat: 48.194, lng: 16.377
-                },
                 markers: [],
                 onMapMounted: (ref: any) => {
                     refs.map = ref;
@@ -74,6 +82,8 @@ const MapWithASearchBox: ComponentClass<IMapWithSearchBoxProps> = compose(
                     this.setState({
                         center: nextCenter,
                         markers: nextMarkers,
+                        zoom: DEFAULT_ZOOM,
+                        circleRadius: null,
                     });
 
                     let props: any = this.props;
@@ -90,10 +100,8 @@ const MapWithASearchBox: ComponentClass<IMapWithSearchBoxProps> = compose(
 
                     let geocoder: any = new google.maps.Geocoder();
 
-                    geocoder.geocode({
-                        "latLng": event.latLng
-                    }, (results: any, status: any) => {
-                        if (status == google.maps.GeocoderStatus.OK) {
+                    geocoder.geocode({"latLng": event.latLng}, (results: any, status: any) => {
+                        if (status === google.maps.GeocoderStatus.OK) {
                             if (results[0]) {
                                 let props: any = this.props;
 
@@ -110,11 +118,10 @@ const MapWithASearchBox: ComponentClass<IMapWithSearchBoxProps> = compose(
 )((props: IMapWithSearchBoxProps) => (
     <GoogleMap
         ref={props.onMapMounted}
-        defaultZoom={15}
         center={props.center}
+        zoom={props.zoom}
         onBoundsChanged={props.onBoundsChanged}
         onClick={props.onMapClicked}
-        defaultCenter={{lat: 48.194, lng: 16.377}}
     >
         <SearchBox
             ref={props.onSearchBoxMounted}
@@ -140,10 +147,28 @@ const MapWithASearchBox: ComponentClass<IMapWithSearchBoxProps> = compose(
                 }}
             />
         </SearchBox>
+
+        <Circle
+            center={props.center}
+            radius={props.circleRadius < 1000000 ? props.circleRadius : null}
+            visible={true}
+            options={{
+                strokeColor: "#00c853",
+                strokeOpacity: 0,
+                strokeWeight: 2,
+                fillColor: "#00c853",
+                fillOpacity: 0.35,
+            }}
+        />
+
         {props.markers.map((marker, index) =>
             <Marker key={index} position={marker.position}/>
         )}
     </GoogleMap>
 ));
+
+function radiusToZoom(radius: number): number {
+    return Math.round(14 - Math.log(radius / 1000) / Math.LN2);
+}
 
 export default MapWithASearchBox;
