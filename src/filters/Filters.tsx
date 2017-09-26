@@ -9,7 +9,10 @@ import Category from "./sections/Category";
 import SubCategory from "./sections/SubCategory";
 import Price from "./sections/Price";
 import Location from "./sections/Location";
+
 import CarDetails, { ICarDetails } from "./sections/car-details/CarDetails";
+import Km from "./sections/car-details/Km";
+import Year from "./sections/car-details/Year";
 
 import "./Filters.css";
 
@@ -20,7 +23,11 @@ class Filters extends Component<IFiltersProps, IFiltersState> {
         categories: ["evr"],
         subCategory: "evr",
         address: "Vienna, Austria",
-        car: {} as ICarDetails
+        carDetails: {
+            startYear: Year.MIN,
+            endYear: Year.MAX,
+            km: Km.MAX
+        } as ICarDetails
     };
 
     public render(): ReactElement<HTMLElement> {
@@ -92,8 +99,17 @@ class Filters extends Component<IFiltersProps, IFiltersState> {
         }
 
         return (
-            <CarDetails {...this.state.car}/>
+            <CarDetails
+                carDetails={this.state.carDetails}
+                onChange={this.handleCarDetailsChange}
+            />
         );
+    }
+
+    private handleCarDetailsChange = (carDetails: ICarDetails): void => {
+        this.setState({
+            carDetails
+        });
     }
 
     private handleAddressChange = (address: string): void => {
@@ -150,7 +166,7 @@ interface IFiltersState {
     sortedBy?: string;
     categories?: string[];
     subCategory?: string;
-    car?: ICarDetails;
+    carDetails?: ICarDetails;
     minValue?: number;
     maxValue?: number;
     address?: string;
