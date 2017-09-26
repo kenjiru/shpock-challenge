@@ -4,13 +4,28 @@
     margin-bottom: 4px;
 }
 
-.section .section-header .section-title {
-    font-weight: bold;
+.section .section-header .icon-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.section .section-header .text {
     flex-grow: 2;
+}
+
+.section .section-header .text .title {
+    font-weight: bold;
     line-height: 24px;
 }
 
-.section .section-header .section-icon {
+.section .section-header .text .sub-title {
+    font-size: 12px;
+    color: #848484;
+}
+
+.section .section-header .icon {
     width: 24px;
     height: 24px;
     margin-right: 8px;

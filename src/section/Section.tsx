@@ -1,6 +1,7 @@
+import * as _ from "lodash";
 import * as classNames from "classnames";
 import * as React from "react";
-import { Component, ReactElement } from "react";
+import { Component, MouseEventHandler, ReactElement } from "react";
 
 import "./Section.css";
 
@@ -8,12 +9,14 @@ class Section extends Component<ISectionProps> {
     public render(): ReactElement<HTMLElement> {
         return (
             <div className={this.getClassName()}>
-                <div className="section-header">
-                    <img
-                        className="section-icon"
-                        src={"img/" + this.props.icon}
-                    />
-                    <div className="section-title">{this.props.title}</div>
+                <div className="section-header" onClick={this.props.onHeaderClick}>
+                    <div className="icon-container">
+                        {this.renderIcon()}
+                    </div>
+                    <div className="text">
+                        <div className="title">{this.props.title}</div>
+                        <div className="sub-title">{this.props.subTitle}</div>
+                    </div>
                     {this.renderTitleRight()}
                 </div>
                 <div className="section-content">
@@ -23,13 +26,26 @@ class Section extends Component<ISectionProps> {
         );
     }
 
+    private renderIcon(): ReactElement<HTMLElement> {
+        if (_.isNil(this.props.icon)) {
+            return <div className="icon"/>;
+        }
+
+        return (
+            <img
+                className="icon"
+                src={"img/" + this.props.icon}
+            />
+        );
+    }
+
     private renderTitleRight(): string | ReactElement<HTMLElement> {
         if (typeof this.props.titleRight === "undefined") {
             return <div/>;
         }
 
         return (
-            <div className="section-right">
+            <div className="title-right">
                 {this.props.titleRight}
             </div>
         );
@@ -42,10 +58,12 @@ class Section extends Component<ISectionProps> {
 }
 
 interface ISectionProps {
-    icon: string;
+    icon?: string;
     title: string;
+    subTitle?: string;
     titleRight?: string | ReactElement<HTMLElement>;
     className?: string;
+    onHeaderClick?: MouseEventHandler<HTMLElement>;
 }
 
 export default Section;

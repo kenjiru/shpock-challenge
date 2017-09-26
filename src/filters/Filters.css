@@ -1,4 +1,4 @@
-.filters .title {
+.filters > .title {
     margin-left: 32px;
     margin-bottom: 8px;
     padding: 12px 0;

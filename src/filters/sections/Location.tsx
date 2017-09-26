@@ -27,8 +27,8 @@ class Location extends Component<ILocationProps, ILocationState> {
                     className="filter-location"
                     icon="location.png"
                     title={this.state.locationTitle}
+                    subTitle="Tap on the map to change the location"
                 >
-                    <div className="label">Tap on the map to change the location</div>
                     <LocationMap
                         radius={this.props.radius}
                         address={this.props.address}
