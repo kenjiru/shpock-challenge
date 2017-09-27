@@ -22,7 +22,7 @@ class LocationMap extends Component<ILocationMapProps> {
         400000,
         500000,
         1000000,
-        10000000,
+        1000,
     ];
 
     public render(): ReactElement<HTMLElement> {
