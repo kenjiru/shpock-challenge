@@ -17,10 +17,12 @@ import Year from "./sections/car-details/Year";
 import "./Filters.css";
 
 class Filters extends Component<IFiltersProps, IFiltersState> {
+    private static DEFAULT_SORTED_BY: string = "distance";
     private static DEFAULT_RADIUS: string = "1km";
 
     public state: IFiltersState = {
         dateRange: 0,
+        sortedBy: Filters.DEFAULT_SORTED_BY,
         radius: Filters.DEFAULT_RADIUS,
         categories: ["evr"],
         subCategory: "evr",
@@ -141,7 +143,8 @@ class Filters extends Component<IFiltersProps, IFiltersState> {
 
     private handleSortedByChange = (sortedBy: string): void => {
         this.setState({
-            sortedBy
+            sortedBy,
+            radius: sortedBy === "distance" ? "evr" : "30km"
         });
     }
 
