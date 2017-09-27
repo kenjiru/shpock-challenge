@@ -23,6 +23,10 @@ class Category extends Component<ICategoryProps> {
 
     private static metaCategories: string[] = ["evr", "auto", "property"];
 
+    public static isMetaCategory(category: string): boolean {
+        return Category.metaCategories.indexOf(category) > -1;
+    }
+
     public render(): ReactElement<HTMLElement> {
         return (
             <Section
@@ -61,7 +65,7 @@ class Category extends Component<ICategoryProps> {
     private addCategory(category: string): string[] {
         let categories: string[] = this.props.selectedCategories.slice(0);
 
-        if (this.isMetaCategory(category)) {
+        if (Category.isMetaCategory(category)) {
             categories = [category];
         } else {
             categories = this.removeMetaCategories(categories);
@@ -89,10 +93,6 @@ class Category extends Component<ICategoryProps> {
 
     private removeMetaCategories(categories: string[]) {
         return _.difference(categories, Category.metaCategories);
-    }
-
-    private isMetaCategory(category: string): boolean {
-        return Category.metaCategories.indexOf(category) > -1;
     }
 
     private isCategoryChecked(category: string): boolean {

@@ -19,13 +19,14 @@ import "./Filters.css";
 class Filters extends Component<IFiltersProps, IFiltersState> {
     private static DEFAULT_SORTED_BY: string = "distance";
     private static DEFAULT_RADIUS: string = "1km";
+    private static DEFAULT_SUBCATEGORY: string = "evr";
 
     public state: IFiltersState = {
         dateRange: 0,
         sortedBy: Filters.DEFAULT_SORTED_BY,
         radius: Filters.DEFAULT_RADIUS,
         categories: ["evr"],
-        subCategory: "evr",
+        subCategory: Filters.DEFAULT_SUBCATEGORY,
         address: "Vienna, Austria",
         carDetails: {
             startYear: Year.MIN,
@@ -130,6 +131,12 @@ class Filters extends Component<IFiltersProps, IFiltersState> {
     }
 
     private handleCategoryChange = (categories: string[]): void => {
+        if (Category.isMetaCategory(categories[0])) {
+            this.setState({
+                subCategory: Filters.DEFAULT_SUBCATEGORY
+            });
+        }
+
         this.setState({
             categories
         });
