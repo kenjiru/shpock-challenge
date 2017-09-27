@@ -1,5 +1,45 @@
-.page .page-title {
-    width: 200px;
+.page > .header {
+    background: #45b862;
+}
+
+.page > .header > .header-content {
+    width: 1000px;
+    margin: 0 auto;
+    padding-top: 23px;
+}
+
+.page .header .logo {
     height: 60px;
     background: #45b862 url("/img/logo.png") no-repeat;
+}
+
+.page .search-bar {
+    background: #e5e2dc;
+    padding: 5px;
+}
+
+.page .search-bar-content {
+    width: 1000px;
+    margin: 0 auto;
+    background: white;
+}
+
+.page .search-input {
+    width: 384px;
+    height: 20px;
+    margin: 5px;
+    padding: 2px 7px 3px;
+    border: none;
+    border-radius: 0;
+
+    color: #707070;
+    background: #fff;
+    font: 15px/20px Arial, Helvetica, sans-serif;
+    outline: none;
+}
+
+.page .filters-container {
+    width: 1000px;
+    margin: 4px auto;
+    padding: 16px;
 }

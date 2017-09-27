@@ -7,8 +7,6 @@ import { greenA700 } from "material-ui/styles/colors";
 
 import Page from "./page/Page";
 
-import "./App.css";
-
 export const appMuiTheme: MuiTheme = {
     palette: {
         primary1Color: greenA700,
