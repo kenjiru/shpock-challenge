@@ -20,15 +20,17 @@ class Filters extends Component<IFiltersProps, IFiltersState> {
     private static DEFAULT_RANGE: string = "24h";
     private static DEFAULT_SORTED_BY: string = "distance";
     private static DEFAULT_RADIUS: string = "1km";
+    private static DEFAULT_CATEGORY: string = "evr";
     private static DEFAULT_SUBCATEGORY: string = "evr";
+    private static DEFAULT_ADDRESS: string = "Vienna, Austria";
 
     public state: IFiltersState = {
         dateRange: Filters.DEFAULT_RANGE,
         sortedBy: Filters.DEFAULT_SORTED_BY,
         radius: Filters.DEFAULT_RADIUS,
-        categories: ["evr"],
+        categories: [Filters.DEFAULT_CATEGORY],
         subCategory: Filters.DEFAULT_SUBCATEGORY,
-        address: "Vienna, Austria",
+        address: Filters.DEFAULT_ADDRESS,
         carDetails: {
             startYear: Year.MIN,
             endYear: Year.MAX,
