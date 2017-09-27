@@ -6,6 +6,8 @@ import { grey700 } from "material-ui/styles/colors";
 
 import RaisedContainer from "../raised-container/RaisedContainer";
 
+import "./RaisedCheckbox.css";
+
 class RaisedCheckbox extends Component<IRaisedCheckboxProps, IRaisedCheckboxState> {
     public render(): ReactElement<HTMLElement> {
         return (
@@ -38,7 +40,7 @@ class RaisedCheckbox extends Component<IRaisedCheckboxProps, IRaisedCheckboxStat
         return {
             color: checked ? "white" : grey700,
             fontSize: 13,
-            lineHeight: "20px"
+            lineHeight: "18px"
         };
     }
 

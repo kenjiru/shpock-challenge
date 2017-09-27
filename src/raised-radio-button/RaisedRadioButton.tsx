@@ -5,6 +5,8 @@ import { RadioButton, RadioButtonProps } from "material-ui";
 import RaisedContainer from "../raised-container/RaisedContainer";
 import { grey700 } from "material-ui/styles/colors";
 
+import "./RaisedRadioButton.css";
+
 class RaisedRadioButton extends Component<IRaisedRadioButtonProps, IRaisedRadioButtonState> {
     public render(): ReactElement<HTMLElement> {
         return (
@@ -37,7 +39,7 @@ class RaisedRadioButton extends Component<IRaisedRadioButtonProps, IRaisedRadioB
         return {
             color: checked ? "white" : grey700,
             fontSize: 13,
-            lineHeight: "20px"
+            lineHeight: "18px"
         };
     }
 
