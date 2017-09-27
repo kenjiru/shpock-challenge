@@ -1,11 +1,13 @@
+import * as _ from "lodash";
 import * as React from "react";
 import { Component, ReactElement } from "react";
-import { TextField } from "material-ui";
 
 import NumberUtil from "../../util/NumberUtil";
 import Section from "../../section/Section";
+import StyledTextField from "../../styled-text-field/StyledTextField";
+import ErrorMessage from "../../error-message/ErrorMessage";
 
-class Price extends Component<IPriceProps> {
+class Price extends Component<IPriceProps, IPriceState> {
     public render(): ReactElement<HTMLElement> {
         return (
             <Section
@@ -13,35 +15,81 @@ class Price extends Component<IPriceProps> {
                 icon="price.png"
                 title="Set your price range"
             >
-                <TextField
-                    className="min-price"
-                    floatingLabelText="Min. price"
-                    value={this.props.minValue}
-                    onChange={this.handleChange.bind(this, "min-value")}
-                />
-                <TextField
-                    className="max-price"
-                    floatingLabelText="Max. price"
-                    value={this.props.maxValue}
-                    onChange={this.handleChange.bind(this, "max-value")}
-                />
+                <div>
+                    <StyledTextField
+                        className="min-price"
+                        floatingLabelText="Min. price"
+                        value={this.props.minValue}
+                        onChange={this.handleMinChange}
+                        hasError={this.inputHasError(InputType.MIN_VALUE)}
+                    />
+                    <StyledTextField
+                        className="max-price"
+                        floatingLabelText="Max. price"
+                        value={this.props.maxValue}
+                        onChange={this.handleMaxChange}
+                        hasError={this.inputHasError(InputType.MAX_VALUE)}
+                    />
+                </div>
+
+                {this.renderErrorMessage()}
             </Section>
         );
     }
 
-    private handleChange = (inputType: string, e: React.FormEvent<{}>, newValue: string): void => {
+    private renderErrorMessage(): ReactElement<HTMLElement> {
+        if (this.hasError() === false) {
+            return undefined;
+        }
+
+        return (
+            <ErrorMessage
+                text="Min. price should be less than the max. price."
+            />
+        );
+    }
+
+    private handleMinChange = (e: React.FormEvent<{}>, newValue: string): void => {
+        this.notifyParent(InputType.MIN_VALUE, newValue);
+    }
+
+    private handleMaxChange = (e: React.FormEvent<{}>, newValue: string): void => {
+        this.notifyParent(InputType.MAX_VALUE, newValue);
+    }
+
+    private notifyParent(inputType: InputType, newValue: string): void {
         let numericValue: number = NumberUtil.convertToNumber(newValue);
 
-        if (numericValue === NaN) {
+        if (Number.isNaN(numericValue)) {
             return;
         }
 
-        if (inputType === "min-value") {
+        if (inputType === InputType.MIN_VALUE) {
             this.props.onChange(numericValue, this.props.maxValue);
         } else {
             this.props.onChange(this.props.minValue, numericValue);
         }
+
+        this.setState({
+            lastChangedInput: inputType
+        });
     }
+
+    private inputHasError(inputType: InputType): boolean {
+        return this.hasError() && this.state.lastChangedInput === inputType;
+    }
+
+    private hasError(): boolean {
+        return _.isNil(this.props.minValue) === false &&
+            _.isNil(this.props.maxValue) === false &&
+            this.props.minValue > this.props.maxValue;
+    }
+}
+
+enum InputType {MIN_VALUE, MAX_VALUE}
+
+interface IPriceState {
+    lastChangedInput?: InputType;
 }
 
 interface IPriceProps {
