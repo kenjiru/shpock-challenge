@@ -17,9 +17,11 @@ import Year from "./sections/car-details/Year";
 import "./Filters.css";
 
 class Filters extends Component<IFiltersProps, IFiltersState> {
+    private static DEFAULT_RADIUS: string = "1km";
+
     public state: IFiltersState = {
         dateRange: 0,
-        radius: 0,
+        radius: Filters.DEFAULT_RADIUS,
         categories: ["evr"],
         subCategory: "evr",
         address: "Vienna, Austria",
@@ -149,7 +151,7 @@ class Filters extends Component<IFiltersProps, IFiltersState> {
         });
     }
 
-    private handleRadiusChange = (radius: number): void => {
+    private handleRadiusChange = (radius: string): void => {
         this.setState({
             radius
         });
@@ -162,7 +164,7 @@ class Filters extends Component<IFiltersProps, IFiltersState> {
 
 interface IFiltersState {
     dateRange?: number;
-    radius?: number;
+    radius?: string;
     sortedBy?: string;
     categories?: string[];
     subCategory?: string;

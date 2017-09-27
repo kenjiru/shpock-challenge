@@ -1,9 +1,12 @@
+import * as _ from "lodash";
 import * as React from "react";
 import { Component, ReactElement } from "react";
 import { Toggle } from "material-ui";
 
+import { IOption } from "../../util/CommonTypes";
 import Section from "../../section/Section";
 import LocationMap from "../../location-map/LocationMap";
+import Radius from "./Radius";
 
 class Location extends Component<ILocationProps, ILocationState> {
     private static EMPTY_LOCATION_TITLE: string = "Current location";
@@ -30,7 +33,7 @@ class Location extends Component<ILocationProps, ILocationState> {
                     subTitle="Tap on the map to change the location"
                 >
                     <LocationMap
-                        radius={this.props.radius}
+                        radius={this.getRadius()}
                         address={this.props.address}
                         onChange={this.handleAddressChange}
                     />
@@ -59,6 +62,12 @@ class Location extends Component<ILocationProps, ILocationState> {
             ownCountry
         });
     }
+
+    private getRadius(): number {
+        return _.findIndex(
+            Radius.availableOptions,
+            (option: IOption): boolean => option.id === this.props.radius);
+    }
 }
 
 interface ILocationState {
@@ -67,7 +76,7 @@ interface ILocationState {
 }
 
 interface ILocationProps {
-    radius: number;
+    radius: string;
     ownCountry: boolean;
     address: string;
     onChange: (address: string) => void;

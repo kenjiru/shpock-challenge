@@ -1,3 +1,4 @@
+import * as _ from "lodash";
 import * as React from "react";
 import { Component, ReactElement } from "react";
 
@@ -42,7 +43,7 @@ class Radius extends Component<IRadiusProps> {
                     min={0}
                     max={17}
                     step={1}
-                    value={this.props.value}
+                    value={this.getIndex()}
                     onChange={this.handleChange}
                 />
             </Section>
@@ -50,17 +51,27 @@ class Radius extends Component<IRadiusProps> {
     }
 
     private handleChange = (ev: React.MouseEvent<{}>, value: number) => {
-        this.props.onChange(value);
+        const selectedOption: IOption = Radius.availableOptions[value];
+
+        this.props.onChange(selectedOption.id);
     }
 
     private getTitleRight() {
-        return Radius.availableOptions[this.props.value].label;
+        const radiusIndex: number = this.getIndex();
+
+        return Radius.availableOptions[radiusIndex].label;
+    }
+
+    private getIndex(): number {
+        return _.findIndex(
+            Radius.availableOptions,
+            (option: IOption): boolean => option.id === this.props.value);
     }
 }
 
 interface IRadiusProps {
-    value: number;
-    onChange: (newValue: number) => void;
+    value: string;
+    onChange: (newValue: string) => void;
 }
 
 export default Radius;
