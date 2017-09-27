@@ -1,0 +1,13 @@
+.error-message {
+    width: 440px;
+    text-align: center;
+}
+
+.error-message > span {
+    line-height: 28px;
+    vertical-align: middle;
+}
+
+.error-message .error-text {
+    margin-left: 12px;
+}
