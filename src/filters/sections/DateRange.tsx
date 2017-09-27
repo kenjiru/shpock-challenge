@@ -1,3 +1,4 @@
+import * as _ from "lodash";
 import * as React from "react";
 import { Component, ReactElement } from "react";
 
@@ -29,7 +30,7 @@ class DateRange extends Component<IDateRangeProps> {
                     min={0}
                     max={4}
                     step={1}
-                    value={this.props.value}
+                    value={this.getIndex()}
                     onChange={this.handleChange}
                 />
             </Section>
@@ -37,17 +38,27 @@ class DateRange extends Component<IDateRangeProps> {
     }
 
     private handleChange = (ev: React.MouseEvent<{}>, value: number) => {
-        this.props.onChange(value);
+        const selectedOption: IOption = DateRange.availableOptions[value];
+
+        this.props.onChange(selectedOption.id);
     }
 
     private getTitleRight() {
-        return DateRange.availableOptions[this.props.value].label;
+        const radiusIndex: number = this.getIndex();
+
+        return DateRange.availableOptions[radiusIndex].label;
+    }
+
+    private getIndex(): number {
+        return _.findIndex(
+            DateRange.availableOptions,
+            (option: IOption): boolean => option.id === this.props.value);
     }
 }
 
 interface IDateRangeProps {
-    value: number;
-    onChange: (newValue: number) => void;
+    value: string;
+    onChange: (newValue: string) => void;
 }
 
 export default DateRange;
