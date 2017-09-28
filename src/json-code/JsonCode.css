@@ -7,24 +7,25 @@ h2 {
     outline: 1px solid #ccc;
     padding: 5px;
     margin: 5px;
+    font: 12px "Monaco", "Menlo", "Ubuntu Mono", "Consolas", "source-code-pro", "Cousine", monospace, monospace;
 }
 
 .json-code .string {
-    color: green;
+    color: rgb(42, 0, 255);
 }
 
 .json-code .number {
-    color: darkorange;
+    color: darkblue;
 }
 
 .json-code .boolean {
-    color: blue;
+    color: inherit;
 }
 
 .json-code .null {
-    color: magenta;
+    color: inherit;
 }
 
 .json-code .key {
-    color: lightcoral;
+    color: rgb(127, 0, 85);;
 }
