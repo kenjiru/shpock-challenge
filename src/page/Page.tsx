@@ -3,7 +3,9 @@ import * as React from "react";
 import { Component, ReactElement } from "react";
 import { Paper } from "material-ui";
 
+import SearchBar from "../search-bar/SearchBar";
 import Filters from "../filters/Filters";
+
 import "./Page.css";
 
 class Page extends Component<IPageProps, IPageState> {
@@ -21,17 +23,11 @@ class Page extends Component<IPageProps, IPageState> {
                     </div>
                 </div>
 
-                <div className="search-bar">
-                    <div className="search-bar-content">
-                        <input
-                            className="search-input"
-                            type="text"
-                            placeholder="What are you looking for ..."
-                            onChange={this.handleChange}
-                            onKeyDown={this.handleKeyDown}
-                        />
-                    </div>
-                </div>
+                <SearchBar
+                    searchStr={this.state.searchStr}
+                    onChange={this.handleSearchChange}
+                    onSubmit={this.handleSubmit}
+                />
                 {this.renderFilters()}
             </div>
         );
@@ -52,20 +48,16 @@ class Page extends Component<IPageProps, IPageState> {
         );
     }
 
-    private handleKeyDown = (ev: any): void => {
-        if (ev.keyCode === 13) {
-            if (this.state.formSubmitted === false) {
-                this.submitForm();
-            }
-            ev.preventDefault();
-        }
+    private handleSearchChange = (searchStr: string): void => {
+        this.setState({
+            searchStr
+        });
     }
 
-    private handleChange = (ev: any): void => {
-        this.setState({
-            searchStr: ev.target.value,
-            formSubmitted: false
-        });
+    private handleSubmit(): void {
+        if (this.state.formSubmitted === false) {
+            this.submitForm();
+        }
     }
 
     private submitForm(): void {
