@@ -13,14 +13,13 @@
     background: #45b862 url("/img/logo.png") no-repeat;
 }
 
-.page .filters-container {
+.page .page-content {
     width: 1000px;
     margin: 4px auto;
     padding: 16px;
 }
 
-.page .json-code {
-    width: 1000px;
-    margin: 4px auto;
-    padding: 16px;
+.page .page-content h2 {
+    font: 25px Arial, Helvetica, sans-serif;
+    color: #45b862;
 }

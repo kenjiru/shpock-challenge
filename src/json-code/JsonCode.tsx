@@ -1,19 +1,15 @@
 import * as React from "react";
 import { Component, ReactElement } from "react";
-import { Paper } from "material-ui";
 
 import "./JsonCode.css";
 
 class JsonCode extends Component<IJsonCodeProps> {
     public render(): ReactElement<HTMLElement> {
         return (
-            <Paper
-                className="json-code"
-                zDepth={2}
-            >
+            <div className="json-code">
                 <h2>Here's the JSON corresponding to the filters</h2>
                 {this.renderCode()}
-            </Paper>
+            </div>
         );
     }
 

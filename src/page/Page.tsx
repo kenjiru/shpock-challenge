@@ -45,8 +45,10 @@ class Page extends Component<IPageProps, IPageState> {
                     onChange={this.handleSearchChange}
                     onSubmit={this.handleSubmit}
                 />
-                {this.renderFilters()}
-                {this.renderJson()}
+                <Paper className="page-content">
+                    {this.renderFilters()}
+                    {this.renderJson()}
+                </Paper>
             </div>
         );
     }
@@ -69,15 +71,10 @@ class Page extends Component<IPageProps, IPageState> {
         }
 
         return (
-            <Paper
-                className="filters-container"
-                zDepth={1}
-            >
-                <Filters
-                    {...this.state.filters}
-                    onChange={this.handleFiltersChange}
-                />
-            </Paper>
+            <Filters
+                {...this.state.filters}
+                onChange={this.handleFiltersChange}
+            />
         );
     }
 
