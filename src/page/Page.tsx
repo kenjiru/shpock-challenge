@@ -8,6 +8,7 @@ import Filters from "../filters/Filters";
 import { ICarDetails } from "../filters/sections/car-details/CarDetails";
 import Year from "../filters/sections/car-details/Year";
 import Km from "../filters/sections/car-details/Km";
+import JsonCode from "../json-code/JsonCode";
 
 import "./Page.css";
 
@@ -45,7 +46,20 @@ class Page extends Component<IPageProps, IPageState> {
                     onSubmit={this.handleSubmit}
                 />
                 {this.renderFilters()}
+                {this.renderJson()}
             </div>
+        );
+    }
+
+    private renderJson(): ReactElement<HTMLElement> {
+        if (this.state.formSubmitted === false) {
+            return undefined;
+        }
+
+        const {formSubmitted, ...obj} = this.state;
+
+        return (
+            <JsonCode json={obj}/>
         );
     }
 

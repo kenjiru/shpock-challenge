@@ -1,0 +1,30 @@
+h2 {
+    font: 25px Arial, Helvetica, sans-serif;
+    color: #45b862;
+}
+
+.json-code pre {
+    outline: 1px solid #ccc;
+    padding: 5px;
+    margin: 5px;
+}
+
+.json-code .string {
+    color: green;
+}
+
+.json-code .number {
+    color: darkorange;
+}
+
+.json-code .boolean {
+    color: blue;
+}
+
+.json-code .null {
+    color: magenta;
+}
+
+.json-code .key {
+    color: lightcoral;
+}
