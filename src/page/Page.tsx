@@ -10,6 +10,7 @@ import Year from "../filters/sections/car-details/Year";
 import Km from "../filters/sections/car-details/Km";
 import JsonCode from "../json-code/JsonCode";
 import SearchHint from "../search-hint/SearchHint";
+import Category from "../filters/sections/Category";
 
 import "./Page.css";
 
@@ -61,10 +62,8 @@ class Page extends Component<IPageProps, IPageState> {
             return undefined;
         }
 
-        const {formSubmitted, ...obj} = this.state;
-
         return (
-            <JsonCode json={obj}/>
+            <JsonCode json={this.getJsonObject()}/>
         );
     }
 
@@ -86,7 +85,7 @@ class Page extends Component<IPageProps, IPageState> {
             return undefined;
         }
 
-        return <SearchHint/>
+        return <SearchHint/>;
     }
 
     private handleFiltersChange = (filters: IFilters): void => {
@@ -112,6 +111,21 @@ class Page extends Component<IPageProps, IPageState> {
         this.setState({
             formSubmitted: true
         });
+    }
+
+    private getJsonObject(): Object {
+        const {formSubmitted, ...jsonObj} = _.cloneDeep(this.state);
+
+        if (Category.isMetaCategory(jsonObj.filters.categories[0]) === false ||
+            jsonObj.filters.categories[0] === "evr") {
+
+            delete jsonObj.filters.subCategory;
+            delete jsonObj.filters.carDetails;
+        } else if (jsonObj.filters.subCategory !== "cars") {
+            delete jsonObj.filters.carDetails;
+        }
+
+        return jsonObj;
     }
 }
 
