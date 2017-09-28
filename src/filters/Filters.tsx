@@ -64,7 +64,11 @@ class Filters extends Component<IFiltersProps> {
                     />
 
                     <div className="clear-button-container">
-                        <RaisedButton label="Clear Filters" secondary={true}/>
+                        <RaisedButton
+                            label="Clear Filters"
+                            secondary={true}
+                            onClick={this.props.onReset}
+                        />
                     </div>
                 </div>
             </div>
@@ -161,6 +165,7 @@ class Filters extends Component<IFiltersProps> {
 
 interface IFiltersProps extends IFilters {
     onChange: (filters: IFilters) => void;
+    onReset: () => void;
 }
 
 export default Filters;

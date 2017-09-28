@@ -15,23 +15,26 @@ import Category from "../filters/sections/Category";
 import "./Page.css";
 
 class Page extends Component<IPageProps, IPageState> {
+    private defaultFilters: IFilters = {
+        dateRange: Filters.DEFAULT_RANGE,
+        sortedBy: Filters.DEFAULT_SORTED_BY,
+        radius: Filters.DEFAULT_RADIUS,
+        categories: [Filters.DEFAULT_CATEGORY],
+        subCategory: Filters.DEFAULT_SUBCATEGORY,
+        address: Filters.DEFAULT_ADDRESS,
+        carDetails: {
+            startYear: Year.MIN,
+            endYear: Year.MAX,
+            km: Km.MAX
+        } as ICarDetails,
+        minPrice: 0,
+        maxPrice: 0
+    };
+
     public state: IPageState = {
         formSubmitted: false,
         searchStr: "",
-        filters: {
-            dateRange: Filters.DEFAULT_RANGE,
-            sortedBy: Filters.DEFAULT_SORTED_BY,
-            radius: Filters.DEFAULT_RADIUS,
-            categories: [Filters.DEFAULT_CATEGORY],
-            subCategory: Filters.DEFAULT_SUBCATEGORY,
-            address: Filters.DEFAULT_ADDRESS,
-            carDetails: {
-                startYear: Year.MIN,
-                endYear: Year.MAX,
-                km: Km.MAX
-            } as ICarDetails,
-            minPrice: 0
-        }
+        filters: _.cloneDeep(this.defaultFilters)
     };
 
     public render(): ReactElement<HTMLElement> {
@@ -76,6 +79,7 @@ class Page extends Component<IPageProps, IPageState> {
             <Filters
                 {...this.state.filters}
                 onChange={this.handleFiltersChange}
+                onReset={this.handleReset}
             />
         );
     }
@@ -86,6 +90,12 @@ class Page extends Component<IPageProps, IPageState> {
         }
 
         return <SearchHint/>;
+    }
+
+    private handleReset = (): void => {
+        this.setState({
+            filters: _.cloneDeep(this.defaultFilters)
+        });
     }
 
     private handleFiltersChange = (filters: IFilters): void => {
