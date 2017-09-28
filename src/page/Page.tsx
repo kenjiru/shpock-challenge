@@ -5,13 +5,29 @@ import { Paper } from "material-ui";
 
 import SearchBar from "../search-bar/SearchBar";
 import Filters from "../filters/Filters";
+import { ICarDetails } from "../filters/sections/car-details/CarDetails";
+import Year from "../filters/sections/car-details/Year";
+import Km from "../filters/sections/car-details/Km";
 
 import "./Page.css";
 
 class Page extends Component<IPageProps, IPageState> {
     public state: IPageState = {
         formSubmitted: false,
-        searchStr: ""
+        searchStr: "",
+        filters: {
+            dateRange: Filters.DEFAULT_RANGE,
+            sortedBy: Filters.DEFAULT_SORTED_BY,
+            radius: Filters.DEFAULT_RADIUS,
+            categories: [Filters.DEFAULT_CATEGORY],
+            subCategory: Filters.DEFAULT_SUBCATEGORY,
+            address: Filters.DEFAULT_ADDRESS,
+            carDetails: {
+                startYear: Year.MIN,
+                endYear: Year.MAX,
+                km: Km.MAX
+            } as ICarDetails
+        }
     };
 
     public render(): ReactElement<HTMLElement> {
@@ -43,19 +59,29 @@ class Page extends Component<IPageProps, IPageState> {
                 className="filters-container"
                 zDepth={1}
             >
-                <Filters/>
+                <Filters
+                    {...this.state.filters}
+                    onChange={this.handleFiltersChange}
+                />
             </Paper>
         );
     }
 
-    private handleSearchChange = (searchStr: string): void => {
+    private handleFiltersChange = (filters: IFilters): void => {
         this.setState({
-            searchStr
+            filters: _.merge({}, this.state.filters, filters)
         });
     }
 
-    private handleSubmit(): void {
-        if (this.state.formSubmitted === false) {
+    private handleSearchChange = (searchStr: string): void => {
+        this.setState({
+            searchStr,
+            formSubmitted: false
+        });
+    }
+
+    private handleSubmit = (): void => {
+        if (this.state.formSubmitted === false && _.isEmpty(this.state.searchStr) === false) {
             this.submitForm();
         }
     }
@@ -64,13 +90,25 @@ class Page extends Component<IPageProps, IPageState> {
         this.setState({
             formSubmitted: true
         });
-        console.log("submit form!");
     }
+}
+
+export interface IFilters {
+    dateRange?: string;
+    radius?: string;
+    sortedBy?: string;
+    categories?: string[];
+    subCategory?: string;
+    carDetails?: ICarDetails;
+    minValue?: number;
+    maxValue?: number;
+    address?: string;
 }
 
 interface IPageState {
     formSubmitted?: boolean;
     searchStr?: string;
+    filters?: IFilters;
 }
 
 interface IPageProps {

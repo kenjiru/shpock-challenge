@@ -2,6 +2,7 @@ import * as React from "react";
 import { Component, ReactElement } from "react";
 import { RaisedButton } from "material-ui";
 
+import { IFilters } from "../page/Page";
 import DateRange from "./sections/DateRange";
 import Radius from "./sections/Radius";
 import SortedBy from "./sections/SortedBy";
@@ -9,34 +10,17 @@ import Category from "./sections/Category";
 import SubCategory from "./sections/SubCategory";
 import Price from "./sections/Price";
 import Location from "./sections/Location";
-
 import CarDetails, { ICarDetails } from "./sections/car-details/CarDetails";
-import Km from "./sections/car-details/Km";
-import Year from "./sections/car-details/Year";
 
 import "./Filters.css";
 
-class Filters extends Component<IFiltersProps, IFiltersState> {
-    private static DEFAULT_RANGE: string = "24h";
-    private static DEFAULT_SORTED_BY: string = "distance";
-    private static DEFAULT_RADIUS: string = "1km";
-    private static DEFAULT_CATEGORY: string = "evr";
-    private static DEFAULT_SUBCATEGORY: string = "evr";
-    private static DEFAULT_ADDRESS: string = "Vienna, Austria";
-
-    public state: IFiltersState = {
-        dateRange: Filters.DEFAULT_RANGE,
-        sortedBy: Filters.DEFAULT_SORTED_BY,
-        radius: Filters.DEFAULT_RADIUS,
-        categories: [Filters.DEFAULT_CATEGORY],
-        subCategory: Filters.DEFAULT_SUBCATEGORY,
-        address: Filters.DEFAULT_ADDRESS,
-        carDetails: {
-            startYear: Year.MIN,
-            endYear: Year.MAX,
-            km: Km.MAX
-        } as ICarDetails
-    };
+class Filters extends Component<IFiltersProps> {
+    public static DEFAULT_RANGE: string = "24h";
+    public static DEFAULT_SORTED_BY: string = "distance";
+    public static DEFAULT_RADIUS: string = "1km";
+    public static DEFAULT_CATEGORY: string = "evr";
+    public static DEFAULT_SUBCATEGORY: string = "evr";
+    public static DEFAULT_ADDRESS: string = "Vienna, Austria";
 
     public render(): ReactElement<HTMLElement> {
         return (
@@ -44,29 +28,29 @@ class Filters extends Component<IFiltersProps, IFiltersState> {
                 <div className="title">Filters</div>
                 <div className="content">
                     <DateRange
-                        value={this.state.dateRange}
+                        value={this.props.dateRange}
                         onChange={this.handleDateRangeChange}
                     />
 
                     <SortedBy
-                        value={this.state.sortedBy}
+                        value={this.props.sortedBy}
                         onChange={this.handleSortedByChange}
                     />
 
                     <Radius
-                        value={this.state.radius}
+                        value={this.props.radius}
                         onChange={this.handleRadiusChange}
                     />
 
                     <Location
-                        radius={this.state.radius}
+                        radius={this.props.radius}
                         ownCountry={true}
                         address="Vienna, Austria"
                         onChange={this.handleAddressChange}
                     />
 
                     <Category
-                        selectedCategories={this.state.categories}
+                        selectedCategories={this.props.categories}
                         onChange={this.handleCategoryChange}
                     />
 
@@ -74,8 +58,8 @@ class Filters extends Component<IFiltersProps, IFiltersState> {
                     {this.renderCarDetails()}
 
                     <Price
-                        minValue={this.state.minValue}
-                        maxValue={this.state.maxValue}
+                        minValue={this.props.minValue}
+                        maxValue={this.props.maxValue}
                         onChange={this.handlePriceChange}
                     />
 
@@ -88,46 +72,46 @@ class Filters extends Component<IFiltersProps, IFiltersState> {
     }
 
     private renderSubCategory(): ReactElement<SubCategory> {
-        if (this.hasSubCategories(this.state.categories[0]) === false) {
+        if (this.hasSubCategories(this.props.categories[0]) === false) {
             return undefined;
         }
 
         return (
             <SubCategory
-                selectedCategory={this.state.categories[0]}
-                selectedSubCategory={this.state.subCategory}
+                selectedCategory={this.props.categories[0]}
+                selectedSubCategory={this.props.subCategory}
                 onChange={this.handleSubCategoryChange}
             />
         );
     }
 
     private renderCarDetails(): ReactElement<CarDetails> {
-        if (this.state.subCategory !== "cars") {
+        if (this.props.subCategory !== "cars") {
             return undefined;
         }
 
         return (
             <CarDetails
-                carDetails={this.state.carDetails}
+                carDetails={this.props.carDetails}
                 onChange={this.handleCarDetailsChange}
             />
         );
     }
 
     private handleCarDetailsChange = (carDetails: ICarDetails): void => {
-        this.setState({
+        this.props.onChange({
             carDetails
         });
     }
 
     private handleAddressChange = (address: string): void => {
-        this.setState({
+        this.props.onChange({
             address
         });
     }
 
     private handlePriceChange = (minValue: number, maxValue: number): void => {
-        this.setState({
+        this.props.onChange({
             minValue,
             maxValue
         });
@@ -135,37 +119,37 @@ class Filters extends Component<IFiltersProps, IFiltersState> {
 
     private handleCategoryChange = (categories: string[]): void => {
         if (Category.isMetaCategory(categories[0])) {
-            this.setState({
+            this.props.onChange({
                 subCategory: Filters.DEFAULT_SUBCATEGORY
             });
         }
 
-        this.setState({
+        this.props.onChange({
             categories
         });
     }
 
     private handleSubCategoryChange = (subCategory: string): void => {
-        this.setState({
+        this.props.onChange({
             subCategory
         });
     }
 
     private handleSortedByChange = (sortedBy: string): void => {
-        this.setState({
+        this.props.onChange({
             sortedBy,
             radius: sortedBy === "distance" ? "evr" : "30km"
         });
     }
 
     private handleDateRangeChange = (dateRange: string): void => {
-        this.setState({
+        this.props.onChange({
             dateRange
         });
     }
 
     private handleRadiusChange = (radius: string): void => {
-        this.setState({
+        this.props.onChange({
             radius
         });
     }
@@ -175,19 +159,8 @@ class Filters extends Component<IFiltersProps, IFiltersState> {
     }
 }
 
-interface IFiltersState {
-    dateRange?: string;
-    radius?: string;
-    sortedBy?: string;
-    categories?: string[];
-    subCategory?: string;
-    carDetails?: ICarDetails;
-    minValue?: number;
-    maxValue?: number;
-    address?: string;
-}
-
-interface IFiltersProps {
+interface IFiltersProps extends IFilters {
+    onChange: (filters: IFilters) => void;
 }
 
 export default Filters;
