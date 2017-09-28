@@ -58,8 +58,8 @@ class Filters extends Component<IFiltersProps> {
                     {this.renderCarDetails()}
 
                     <Price
-                        minValue={this.props.minValue}
-                        maxValue={this.props.maxValue}
+                        minValue={this.props.minPrice}
+                        maxValue={this.props.maxPrice}
                         onChange={this.handlePriceChange}
                     />
 
@@ -110,10 +110,10 @@ class Filters extends Component<IFiltersProps> {
         });
     }
 
-    private handlePriceChange = (minValue: number, maxValue: number): void => {
+    private handlePriceChange = (minPrice: number, maxPrice: number): void => {
         this.props.onChange({
-            minValue,
-            maxValue
+            minPrice,
+            maxPrice
         });
     }
 

@@ -28,7 +28,8 @@ class Page extends Component<IPageProps, IPageState> {
                 startYear: Year.MIN,
                 endYear: Year.MAX,
                 km: Km.MAX
-            } as ICarDetails
+            } as ICarDetails,
+            minPrice: 0
         }
     };
 
@@ -121,8 +122,8 @@ export interface IFilters {
     categories?: string[];
     subCategory?: string;
     carDetails?: ICarDetails;
-    minValue?: number;
-    maxValue?: number;
+    minPrice?: number;
+    maxPrice?: number;
     address?: string;
 }
 
