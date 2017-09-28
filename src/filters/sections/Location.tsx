@@ -8,13 +8,17 @@ import Section from "../../section/Section";
 import LocationMap from "../../location-map/LocationMap";
 import Radius from "./Radius";
 
-class Location extends Component<ILocationProps, ILocationState> {
-    private static EMPTY_LOCATION_TITLE: string = "Current location";
+class Location extends Component<ILocationProps> {
+    /*
+        private static EMPTY_LOCATION_TITLE: string = "Current location";
 
-    public state: ILocationState = {
-        ownCountry: true,
-        locationTitle: Location.EMPTY_LOCATION_TITLE
-    };
+        public defaultProps: ILocationProps = {
+            radius: "1km",
+            ownCountry: true,
+            address: Location.EMPTY_LOCATION_TITLE,
+            onChange: () => {}
+        };
+    */
 
     public render(): ReactElement<HTMLElement> {
         return (
@@ -29,7 +33,7 @@ class Location extends Component<ILocationProps, ILocationState> {
                 <Section
                     className="filter-location"
                     icon="location.png"
-                    title={this.state.locationTitle}
+                    title={this.props.address}
                     subTitle="Tap on the map to change the location"
                 >
                     <LocationMap
@@ -52,15 +56,11 @@ class Location extends Component<ILocationProps, ILocationState> {
     }
 
     private handleAddressChange = (address: string): void => {
-        this.setState({
-            locationTitle: address
-        });
+        this.props.onChange(address, this.props.ownCountry);
     }
 
     private handleToggleOwnCountry = (ev: React.MouseEvent<{}>, ownCountry: boolean): void => {
-        this.setState({
-            ownCountry
-        });
+        this.props.onChange(this.props.address, ownCountry);
     }
 
     private getRadius(): number {
@@ -70,16 +70,11 @@ class Location extends Component<ILocationProps, ILocationState> {
     }
 }
 
-interface ILocationState {
-    ownCountry?: boolean;
-    locationTitle?: string;
-}
-
 interface ILocationProps {
     radius: string;
     ownCountry: boolean;
     address: string;
-    onChange: (address: string) => void;
+    onChange: (address: string, ownCountry: boolean) => void;
 }
 
 export default Location;

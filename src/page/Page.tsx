@@ -15,12 +15,13 @@ import Category from "../filters/sections/Category";
 import "./Page.css";
 
 class Page extends Component<IPageProps, IPageState> {
-    private defaultFilters: IFilters = {
+    protected defaultFilters: IFilters = {
         dateRange: Filters.DEFAULT_RANGE,
         sortedBy: Filters.DEFAULT_SORTED_BY,
         radius: Filters.DEFAULT_RADIUS,
         categories: [Filters.DEFAULT_CATEGORY],
         subCategory: Filters.DEFAULT_SUBCATEGORY,
+        ownCountry: true,
         address: Filters.DEFAULT_ADDRESS,
         carDetails: {
             startYear: Year.MIN,
@@ -149,6 +150,7 @@ export interface IFilters {
     minPrice?: number;
     maxPrice?: number;
     address?: string;
+    ownCountry?: boolean;
 }
 
 interface IPageState {

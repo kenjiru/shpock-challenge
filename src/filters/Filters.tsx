@@ -44,8 +44,8 @@ class Filters extends Component<IFiltersProps> {
 
                     <Location
                         radius={this.props.radius}
-                        ownCountry={true}
-                        address="Vienna, Austria"
+                        ownCountry={this.props.ownCountry}
+                        address={this.props.address}
                         onChange={this.handleAddressChange}
                     />
 
@@ -108,9 +108,10 @@ class Filters extends Component<IFiltersProps> {
         });
     }
 
-    private handleAddressChange = (address: string): void => {
+    private handleAddressChange = (address: string, ownCountry: boolean): void => {
         this.props.onChange({
-            address
+            address,
+            ownCountry
         });
     }
 
