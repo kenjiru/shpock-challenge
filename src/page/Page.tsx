@@ -9,6 +9,7 @@ import { ICarDetails } from "../filters/sections/car-details/CarDetails";
 import Year from "../filters/sections/car-details/Year";
 import Km from "../filters/sections/car-details/Km";
 import JsonCode from "../json-code/JsonCode";
+import SearchHint from "../search-hint/SearchHint";
 
 import "./Page.css";
 
@@ -46,6 +47,7 @@ class Page extends Component<IPageProps, IPageState> {
                     onSubmit={this.handleSubmit}
                 />
                 <Paper className="page-content">
+                    {this.renderHint()}
                     {this.renderFilters()}
                     {this.renderJson()}
                 </Paper>
@@ -76,6 +78,14 @@ class Page extends Component<IPageProps, IPageState> {
                 onChange={this.handleFiltersChange}
             />
         );
+    }
+
+    private renderHint(): ReactElement<SearchHint> {
+        if (_.isEmpty(this.state.searchStr) === false || this.state.formSubmitted) {
+            return undefined;
+        }
+
+        return <SearchHint/>
     }
 
     private handleFiltersChange = (filters: IFilters): void => {
