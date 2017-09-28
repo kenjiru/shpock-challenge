@@ -63,7 +63,7 @@ class Category extends Component<ICategoryProps> {
     }
 
     private addCategory(category: string): string[] {
-        let categories: string[] = this.props.selectedCategories.slice(0);
+        let categories: string[] = _.clone(this.props.selectedCategories);
 
         if (Category.isMetaCategory(category)) {
             categories = [category];
@@ -76,7 +76,7 @@ class Category extends Component<ICategoryProps> {
     }
 
     private removeCategory(category: string): string[] {
-        let selectedCategories: string[] = this.props.selectedCategories.slice(0);
+        let selectedCategories: string[] = _.clone(this.props.selectedCategories);
 
         let index: number = selectedCategories.indexOf(category);
 

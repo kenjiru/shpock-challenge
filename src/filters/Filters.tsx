@@ -1,8 +1,9 @@
+import * as _ from "lodash";
 import * as React from "react";
 import { Component, ReactElement } from "react";
 import { RaisedButton } from "material-ui";
 
-import { IFilters } from "../page/Page";
+import Page, { IFilters } from "../page/Page";
 import DateRange from "./sections/DateRange";
 import Radius from "./sections/Radius";
 import SortedBy from "./sections/SortedBy";
@@ -123,14 +124,10 @@ class Filters extends Component<IFiltersProps> {
     }
 
     private handleCategoryChange = (categories: string[]): void => {
-        if (Category.isMetaCategory(categories[0])) {
-            this.props.onChange({
-                subCategory: Filters.DEFAULT_SUBCATEGORY
-            });
-        }
-
         this.props.onChange({
-            categories
+            categories,
+            subCategory: Filters.DEFAULT_SUBCATEGORY,
+            carDetails: _.cloneDeep(Page.defaultCarDetails)
         });
     }
 

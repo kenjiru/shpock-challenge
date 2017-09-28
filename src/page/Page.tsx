@@ -15,7 +15,13 @@ import Category from "../filters/sections/Category";
 import "./Page.css";
 
 class Page extends Component<IPageProps, IPageState> {
-    protected defaultFilters: IFilters = {
+    public static defaultCarDetails: ICarDetails = {
+        startYear: Year.MIN,
+        endYear: Year.MAX,
+        km: Km.MAX
+    } as ICarDetails;
+
+    public defaultFilters: IFilters = {
         dateRange: Filters.DEFAULT_RANGE,
         sortedBy: Filters.DEFAULT_SORTED_BY,
         radius: Filters.DEFAULT_RADIUS,
@@ -23,11 +29,7 @@ class Page extends Component<IPageProps, IPageState> {
         subCategory: Filters.DEFAULT_SUBCATEGORY,
         ownCountry: true,
         address: Filters.DEFAULT_ADDRESS,
-        carDetails: {
-            startYear: Year.MIN,
-            endYear: Year.MAX,
-            km: Km.MAX
-        } as ICarDetails,
+        carDetails: _.cloneDeep(Page.defaultCarDetails),
         minPrice: 0,
         maxPrice: 0
     };
@@ -101,7 +103,7 @@ class Page extends Component<IPageProps, IPageState> {
 
     private handleFiltersChange = (filters: IFilters): void => {
         this.setState({
-            filters: _.merge({}, this.state.filters, filters)
+            filters: _.assign({}, this.state.filters, filters)
         });
     }
 
