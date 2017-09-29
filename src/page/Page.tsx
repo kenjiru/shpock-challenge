@@ -11,6 +11,7 @@ import Km from "../filters/sections/car-details/Km";
 import JsonCode from "../json-code/JsonCode";
 import SearchHint from "../search-hint/SearchHint";
 import Category from "../filters/sections/Category";
+import Price from "../filters/sections/Price";
 
 import "./Page.css";
 
@@ -115,7 +116,10 @@ class Page extends Component<IPageProps, IPageState> {
     }
 
     private handleSubmit = (): void => {
-        if (this.state.formSubmitted === false && _.isEmpty(this.state.searchStr) === false) {
+        if (this.state.formSubmitted === false &&
+            _.isEmpty(this.state.searchStr) === false &&
+            Price.isValid(this.state.filters.minPrice, this.state.filters.maxPrice)) {
+
             this.submitForm();
         }
     }

@@ -8,6 +8,14 @@ import StyledTextField from "../../styled-text-field/StyledTextField";
 import ErrorMessage from "../../error-message/ErrorMessage";
 
 class Price extends Component<IPriceProps, IPriceState> {
+    public state: IPriceState = {
+        lastChangedInput: null
+    };
+
+    public static isValid(minValue: number, maxValue: number): boolean {
+        return _.isNil(minValue) || _.isNil(maxValue) || minValue <= maxValue;
+    }
+
     public render(): ReactElement<HTMLElement> {
         return (
             <Section
@@ -38,7 +46,7 @@ class Price extends Component<IPriceProps, IPriceState> {
     }
 
     private renderErrorMessage(): ReactElement<HTMLElement> {
-        if (this.hasError() === false) {
+        if (Price.isValid(this.props.minValue, this.props.maxValue)) {
             return undefined;
         }
 
@@ -76,13 +84,8 @@ class Price extends Component<IPriceProps, IPriceState> {
     }
 
     private inputHasError(inputType: InputType): boolean {
-        return this.hasError() && this.state.lastChangedInput === inputType;
-    }
-
-    private hasError(): boolean {
-        return _.isNil(this.props.minValue) === false &&
-            _.isNil(this.props.maxValue) === false &&
-            this.props.minValue > this.props.maxValue;
+        return Price.isValid(this.props.minValue, this.props.maxValue) === false &&
+            this.state.lastChangedInput === inputType;
     }
 }
 
