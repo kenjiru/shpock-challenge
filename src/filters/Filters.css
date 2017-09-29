@@ -43,7 +43,3 @@
 .filters .min-price, .filters .max-price {
     max-width: 210px;
 }
-
-.filters .clear-button-container {
-    text-align: center;
-}

@@ -1,7 +1,6 @@
 import * as _ from "lodash";
 import * as React from "react";
 import { Component, ReactElement } from "react";
-import { RaisedButton } from "material-ui";
 
 import Page, { IFilters } from "../page/Page";
 import DateRange from "./sections/DateRange";
@@ -12,6 +11,7 @@ import SubCategory from "./sections/SubCategory";
 import Price from "./sections/Price";
 import Location from "./sections/Location";
 import CarDetails, { ICarDetails } from "./sections/car-details/CarDetails";
+import ActionButtons from "../action-buttons/ActionButtons";
 
 import "./Filters.css";
 
@@ -64,13 +64,11 @@ class Filters extends Component<IFiltersProps> {
                         onChange={this.handlePriceChange}
                     />
 
-                    <div className="clear-button-container">
-                        <RaisedButton
-                            label="Clear Filters"
-                            secondary={true}
-                            onClick={this.props.onReset}
-                        />
-                    </div>
+                    <ActionButtons
+                        onReset={this.props.onReset}
+                        onSubmit={this.props.onSubmit}
+                        isSearchDisabled={this.props.isPriceValid}
+                    />
                 </div>
             </div>
         );
@@ -164,6 +162,8 @@ class Filters extends Component<IFiltersProps> {
 interface IFiltersProps extends IFilters {
     onChange: (filters: IFilters) => void;
     onReset: () => void;
+    onSubmit: () => void;
+    isPriceValid: boolean;
 }
 
 export default Filters;

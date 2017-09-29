@@ -84,6 +84,8 @@ class Page extends Component<IPageProps, IPageState> {
                 {...this.state.filters}
                 onChange={this.handleFiltersChange}
                 onReset={this.handleReset}
+                onSubmit={this.handleSubmit}
+                isPriceValid={this.isPriceValid()}
             />
         );
     }
@@ -118,7 +120,7 @@ class Page extends Component<IPageProps, IPageState> {
     private handleSubmit = (): void => {
         if (this.state.formSubmitted === false &&
             _.isEmpty(this.state.searchStr) === false &&
-            Price.isValid(this.state.filters.minPrice, this.state.filters.maxPrice)) {
+            this.isPriceValid()) {
 
             this.submitForm();
         }
@@ -143,6 +145,10 @@ class Page extends Component<IPageProps, IPageState> {
         }
 
         return jsonObj;
+    }
+
+    private isPriceValid(): boolean {
+        return Price.isValid(this.state.filters.minPrice, this.state.filters.maxPrice);
     }
 }
 

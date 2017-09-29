@@ -1,0 +1,7 @@
+.action-buttons {
+    text-align: center;
+}
+
+.action-buttons > div {
+    margin: 0 5px;
+}
