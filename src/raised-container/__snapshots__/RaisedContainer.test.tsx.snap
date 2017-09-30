@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RaisedContainer should render correctly 1`] = `
+<div
+  className="raised-container custom-class"
+  style={
+    Object {
+      "backgroundColor": "#e0e0e0",
+    }
+  }
+/>
+`;

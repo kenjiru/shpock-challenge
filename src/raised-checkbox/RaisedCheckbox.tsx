@@ -8,7 +8,14 @@ import RaisedContainer from "../raised-container/RaisedContainer";
 
 import "./RaisedCheckbox.css";
 
-class RaisedCheckbox extends Component<IRaisedCheckboxProps, IRaisedCheckboxState> {
+class RaisedCheckbox extends Component<CheckboxProps> {
+    public static CLASS_NAME: string = "raised-checkbox";
+    public static LINE_HEIGHT: string = "18px";
+    public static CHECKED_COLOR: string = "white";
+    public static NORMAL_COLOR: string = grey700;
+    public static SIZE: number = 20;
+    public static FONT_SIZE: number = 13;
+
     public render(): ReactElement<HTMLElement> {
         return (
             <RaisedContainer
@@ -28,9 +35,9 @@ class RaisedCheckbox extends Component<IRaisedCheckboxProps, IRaisedCheckboxStat
         const {checked} = this.props;
 
         return {
-            fill: checked ? "white" : grey700,
-            width: 20,
-            height: 20
+            fill: checked ? RaisedCheckbox.CHECKED_COLOR : RaisedCheckbox.NORMAL_COLOR,
+            width: RaisedCheckbox.SIZE,
+            height: RaisedCheckbox.SIZE
         };
     }
 
@@ -38,22 +45,15 @@ class RaisedCheckbox extends Component<IRaisedCheckboxProps, IRaisedCheckboxStat
         const {checked} = this.props;
 
         return {
-            color: checked ? "white" : grey700,
-            fontSize: 13,
-            lineHeight: "18px"
+            color: checked ? RaisedCheckbox.CHECKED_COLOR : RaisedCheckbox.NORMAL_COLOR,
+            fontSize: RaisedCheckbox.FONT_SIZE,
+            lineHeight: RaisedCheckbox.LINE_HEIGHT
         };
     }
 
     private getClassName(): string {
-        return classNames("raised-checkbox", this.props.className);
+        return classNames(RaisedCheckbox.CLASS_NAME, this.props.className);
     }
-}
-
-interface IRaisedCheckboxState {
-}
-
-interface IRaisedCheckboxProps extends CheckboxProps {
-    className?: string;
 }
 
 export default RaisedCheckbox;

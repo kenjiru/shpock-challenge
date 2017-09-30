@@ -1,3 +1,4 @@
+import * as _ from "lodash";
 import * as classNames from "classnames";
 import * as React from "react";
 import { Component, ReactElement } from "react";
@@ -7,7 +8,10 @@ import { grey300 } from "material-ui/styles/colors";
 
 import "./RaisedContainer.css";
 
-class RaisedContainer extends Component<IRaisedContainerProps> {
+export class RaisedContainer extends Component<IRaisedContainerProps> {
+    public static CLASS_NAME: string = "raised-container";
+    public static NORMAL_BACKGROUND: string = grey300;
+
     public render(): ReactElement<HTMLElement> {
         return (
             <div
@@ -23,16 +27,20 @@ class RaisedContainer extends Component<IRaisedContainerProps> {
         const {checked} = this.props;
 
         return {
-            backgroundColor: checked ? this.props.muiTheme.palette.primary1Color : grey300
+            backgroundColor: checked ? this.getPrimaryColor() : RaisedContainer.NORMAL_BACKGROUND
         };
     }
 
+    private getPrimaryColor(): string {
+        return _.get(this.props, "muiTheme.palette.primary1Color");
+    }
+
     private getClassName(): string {
-        return classNames("raised-container", this.props.className);
+        return classNames(RaisedContainer.CLASS_NAME, this.props.className);
     }
 }
 
-interface IRaisedContainerProps {
+export interface IRaisedContainerProps {
     className?: string;
     checked: boolean;
     muiTheme?: MuiTheme;
