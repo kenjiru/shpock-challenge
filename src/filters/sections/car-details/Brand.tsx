@@ -1,7 +1,9 @@
 import * as React from "react";
 import { Component, CSSProperties, ReactElement } from "react";
 import { MenuItem, SelectField } from "material-ui";
+
 import { IOption } from "../../../util/CommonTypes";
+import Img from "../../../img/Img";
 
 import "./Brand.css";
 
@@ -20,9 +22,9 @@ class Brand extends Component<IBrandProps> {
         return (
             <div className="brand">
                 <div className="icon-container">
-                    <img
+                    <Img
                         className="icon"
-                        src="img/car.png"
+                        src="car.png"
                     />
                 </div>
                 <SelectField

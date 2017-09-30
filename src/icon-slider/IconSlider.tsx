@@ -2,6 +2,8 @@ import * as React from "react";
 import { Component, ReactElement } from "react";
 import { Slider, SliderProps } from "material-ui";
 
+import Img from "../img/Img";
+
 import "./IconSlider.css";
 
 class IconSlider extends Component<IIconSliderProps> {
@@ -15,11 +17,11 @@ class IconSlider extends Component<IIconSliderProps> {
 
         return (
             <div className="icon-slider">
-                <img className="icon icon-left" src={"img/" + this.props.iconLeft}/>
+                <Img className="icon icon-left" src={this.props.iconLeft}/>
                 <div className="slider">
                     <Slider sliderStyle={this.sliderStyle} {...props}/>
                 </div>
-                <img className="icon icon-right" src={"img/" + this.props.iconRight}/>
+                <Img className="icon icon-right" src={this.props.iconRight}/>
             </div>
         );
     }

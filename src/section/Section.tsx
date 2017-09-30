@@ -3,6 +3,8 @@ import * as classNames from "classnames";
 import * as React from "react";
 import { Component, MouseEventHandler, ReactElement } from "react";
 
+import Img from "../img/Img";
+
 import "./Section.css";
 
 class Section extends Component<ISectionProps> {
@@ -32,9 +34,9 @@ class Section extends Component<ISectionProps> {
         }
 
         return (
-            <img
+            <Img
                 className="icon"
-                src={"img/" + this.props.icon}
+                src={this.props.icon}
             />
         );
     }
