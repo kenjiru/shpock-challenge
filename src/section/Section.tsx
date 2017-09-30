@@ -61,7 +61,7 @@ class Section extends Component<ISectionProps> {
 
 interface ISectionProps {
     icon?: string;
-    title: string;
+    title?: string;
     subTitle?: string;
     titleRight?: string | ReactElement<HTMLElement>;
     className?: string;

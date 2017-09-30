@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Section should render correctly 1`] = `
+<div
+  className="section custom-class"
+>
+  <div
+    className="section-header"
+  >
+    <div
+      className="icon-container"
+    >
+      <div
+        className="icon"
+      />
+    </div>
+    <div
+      className="text"
+    >
+      <div
+        className="title"
+      />
+      <div
+        className="sub-title"
+      />
+    </div>
+    <div />
+  </div>
+  <div
+    className="section-content"
+  />
+</div>
+`;
