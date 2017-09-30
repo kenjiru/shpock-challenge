@@ -67,7 +67,7 @@ class Filters extends Component<IFiltersProps> {
                     <ActionButtons
                         onReset={this.props.onReset}
                         onSubmit={this.props.onSubmit}
-                        isSearchDisabled={this.props.isPriceValid}
+                        isSubmitDisabled={this.props.isPriceValid === false}
                     />
                 </div>
             </div>

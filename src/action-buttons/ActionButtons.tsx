@@ -9,16 +9,18 @@ class ActionButtons extends Component<IActionButtonsProps> {
         return (
             <div className="action-buttons">
                 <RaisedButton
+                    className="reset"
                     label="Clear Filters"
                     secondary={true}
                     onClick={this.props.onReset}
                 />
 
                 <RaisedButton
+                    className="submit"
                     label="Search"
                     primary={true}
                     onClick={this.props.onSubmit}
-                    disabled={this.props.isSearchDisabled === false}
+                    disabled={this.props.isSubmitDisabled}
                 />
             </div>
         );
@@ -28,7 +30,7 @@ class ActionButtons extends Component<IActionButtonsProps> {
 interface IActionButtonsProps {
     onReset: () => void;
     onSubmit: () => void;
-    isSearchDisabled: boolean;
+    isSubmitDisabled: boolean;
 }
 
 export default ActionButtons;

@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActionButtons should render correctly 1`] = `
+<div
+  className="action-buttons"
+>
+  <RaisedButton
+    className="reset"
+    disabled={false}
+    fullWidth={false}
+    label="Clear Filters"
+    labelPosition="after"
+    onClick={[Function]}
+    primary={false}
+    secondary={true}
+  />
+  <RaisedButton
+    className="submit"
+    disabled={false}
+    fullWidth={false}
+    label="Search"
+    labelPosition="after"
+    onClick={[Function]}
+    primary={true}
+    secondary={false}
+  />
+</div>
+`;
