@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ErrorMessage should render correctly 1`] = `
+<div
+  className="error-message"
+>
+  <FontIcon
+    className="material-icons"
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    style={
+      Object {
+        "color": undefined,
+      }
+    }
+  >
+    warning
+  </FontIcon>
+  <span
+    className="error-text"
+    style={
+      Object {
+        "color": undefined,
+      }
+    }
+  >
+    Error text
+  </span>
+</div>
+`;

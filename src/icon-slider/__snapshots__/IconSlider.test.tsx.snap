@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ErrorMessage should render correctly 1`] = `
+<div
+  className="icon-slider"
+>
+  <Img
+    className="icon icon-left"
+    src="left.png"
+  />
+  <div
+    className="slider"
+  >
+    <Slider
+      axis="x"
+      disableFocusRipple={false}
+      disabled={false}
+      max={1}
+      min={0}
+      required={true}
+      sliderStyle={
+        Object {
+          "marginBottom": 0,
+          "marginTop": "3px",
+        }
+      }
+      step={0.01}
+      style={Object {}}
+    />
+  </div>
+  <Img
+    className="icon icon-right"
+    src="right.png"
+  />
+</div>
+`;

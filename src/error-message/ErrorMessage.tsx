@@ -1,3 +1,4 @@
+import * as _ from "lodash";
 import * as React from "react";
 import { Component, CSSProperties, ReactElement } from "react";
 import { FontIcon } from "material-ui";
@@ -6,33 +7,37 @@ import muiThemeable from "material-ui/styles/muiThemeable";
 
 import "./ErrorMessage.css";
 
-class ErrorMessage extends Component<IErrorMessageProps> {
-    private iconStyles: CSSProperties = {
-        color: this.props.muiTheme.textField.errorColor
-    };
+export class ErrorMessage extends Component<IErrorMessageProps> {
+    public static ERROR_TEXT_CLASS: string = "error-text";
 
     public render(): ReactElement<HTMLElement> {
         return (
             <div className="error-message">
                 <FontIcon
                     className="material-icons"
-                    style={this.iconStyles}
+                    style={this.getIconStyles()}
                 >
                     warning
                 </FontIcon>
 
                 <span
-                    className="error-text"
-                    style={this.iconStyles}
+                    className={ErrorMessage.ERROR_TEXT_CLASS}
+                    style={this.getIconStyles()}
                 >
                     {this.props.text}
                 </span>
             </div>
         );
     }
+
+    private getIconStyles(): CSSProperties {
+        return {
+            color: _.get(this.props, "muiTheme.textField.errorColor")
+        };
+    }
 }
 
-interface IErrorMessageProps {
+export interface IErrorMessageProps {
     text: string;
     muiTheme?: MuiTheme;
 }
