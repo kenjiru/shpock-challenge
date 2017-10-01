@@ -29,11 +29,15 @@
     "enzyme-adapter-react-15": "^1.0.0",
     "enzyme-to-json": "^3.0.1",
     "jest-enzyme": "^4.0.0",
-    "react-test-renderer": "15.6.1"
+    "node-sass": "^4.5.3",
+    "proxyquire": "^1.8.0",
+    "react-test-renderer": "15.6.1",
+    "rewire": "^2.5.2",
+    "sass-loader": "^6.0.6"
   },
   "scripts": {
-    "start": "react-scripts-ts start",
-    "build": "GENERATE_SOURCEMAP=false react-scripts-ts build",
+    "start": "node scripts/customized-config start",
+    "build": "GENERATE_SOURCEMAP=false node scripts/customized-config build",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject",
     "deploy": "surge --project ./build"
