@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchHint should render correctly 1`] = `
+<div
+  className="search-hint"
+>
+  <h2>
+    Hint
+  </h2>
+  <p>
+    Enter something in the input above in order to show the available filters.
+  </p>
+  <p>
+    Press Enter to submit.
+  </p>
+</div>
+`;
