@@ -4,7 +4,7 @@ import { Slider, SliderProps } from "material-ui";
 
 import Img from "../img/Img";
 
-import "./IconSlider.css";
+import "./IconSlider.scss";
 
 class IconSlider extends Component<IIconSliderProps> {
     private sliderStyle: Object = {

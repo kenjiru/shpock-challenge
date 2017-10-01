@@ -1,0 +1,28 @@
+.json-code {
+    pre {
+        outline: 1px solid #ccc;
+        padding: 5px;
+        margin: 5px;
+        font: 12px "Monaco", "Menlo", "Ubuntu Mono", "Consolas", "source-code-pro", "Cousine", monospace, monospace;
+    }
+
+    .string {
+        color: rgb(42, 0, 255);
+    }
+
+    .number {
+        color: darkblue;
+    }
+
+    .boolean {
+        color: inherit;
+    }
+
+    .null {
+        color: inherit;
+    }
+
+    .key {
+        color: rgb(127, 0, 85);;
+    }
+}

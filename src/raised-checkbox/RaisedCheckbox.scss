@@ -1,0 +1,7 @@
+.raised-checkbox {
+    height: 30px;
+
+    input[type=checkbox] + div {
+        align-items: center;
+    }
+}

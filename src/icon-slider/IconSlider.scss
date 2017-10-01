@@ -1,0 +1,14 @@
+.icon-slider {
+    display: flex;
+    flex-direction: row;
+
+    .icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .slider {
+        flex-grow: 2;
+        margin: 0 8px;
+    }
+}

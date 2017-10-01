@@ -5,7 +5,7 @@ import { MenuItem, SelectField } from "material-ui";
 import { IOption } from "../../../util/CommonTypes";
 import Img from "../../../img/Img";
 
-import "./Brand.css";
+import "./Brand.scss";
 
 class Brand extends Component<IBrandProps> {
     public static availableOptions: IOption[] = [

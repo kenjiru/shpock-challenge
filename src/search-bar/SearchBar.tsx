@@ -2,7 +2,7 @@ import * as React from "react";
 import { Component, ReactElement } from "react";
 import { Grid, Row, Col } from "react-flexbox-grid";
 
-import "./SearchBar.css";
+import "./SearchBar.scss";
 
 class SearchBar extends Component<ISearchBarProps> {
     public static SEARCH_INPUT_CLASS: string = "search-input";

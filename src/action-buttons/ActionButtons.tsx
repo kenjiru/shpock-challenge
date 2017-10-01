@@ -2,7 +2,7 @@ import * as React from "react";
 import { Component, ReactElement } from "react";
 import { RaisedButton } from "material-ui";
 
-import "./ActionButtons.css";
+import "./ActionButtons.scss";
 
 class ActionButtons extends Component<IActionButtonsProps> {
     public render(): ReactElement<HTMLElement> {

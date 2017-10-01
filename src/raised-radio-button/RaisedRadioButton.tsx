@@ -6,7 +6,7 @@ import { grey700 } from "material-ui/styles/colors";
 
 import RaisedContainer from "../raised-container/RaisedContainer";
 
-import "./RaisedRadioButton.css";
+import "./RaisedRadioButton.scss";
 
 class RaisedRadioButton extends Component<RadioButtonProps> {
     public static CLASS_NAME: string = "raised-radio-button";

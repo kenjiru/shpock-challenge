@@ -1,0 +1,50 @@
+.filters {
+    > .title {
+        margin-left: 32px;
+        margin-bottom: 8px;
+        padding: 12px 0;
+        font-size: large;
+        font-weight: 500;
+        color: rgba(0, 0, 0, 0.8);
+    }
+
+    .section {
+        margin-bottom: 18px;
+    }
+
+    .section-content {
+        &:after {
+            content: ".";
+            visibility: hidden;
+            display: block;
+            height: 0;
+            clear: both;
+        }
+
+        .raised-radio-button, .raised-checkbox {
+            width: 200px;
+            float: left;
+        }
+    }
+
+    .filter-location .label {
+        font-size: 12px;
+        color: #b1b1b1;
+        margin-bottom: 8px;
+    }
+
+    .location-map {
+        margin-left: -48px;
+        margin-right: -18px;
+    }
+
+    .filter-price {
+        .min-price {
+            margin-right: 10px;
+        }
+
+        .min-price, .max-price {
+            max-width: 210px;
+        }
+    }
+}

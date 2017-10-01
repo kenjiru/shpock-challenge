@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Component, ReactElement } from "react";
 
-import "./JsonCode.css";
+import "./JsonCode.scss";
 
 class JsonCode extends Component<IJsonCodeProps> {
     public render(): ReactElement<HTMLElement> {

@@ -1,0 +1,7 @@
+.raised-radio-button {
+    height: 30px;
+
+    input[type=radio] + div {
+        align-items: center;
+    }
+}

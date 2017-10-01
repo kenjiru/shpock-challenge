@@ -5,7 +5,7 @@ import { Component, MouseEventHandler, ReactElement } from "react";
 
 import Img from "../img/Img";
 
-import "./Section.css";
+import "./Section.scss";
 
 class Section extends Component<ISectionProps> {
     public render(): ReactElement<HTMLElement> {

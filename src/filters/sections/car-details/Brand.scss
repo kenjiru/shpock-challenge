@@ -1,0 +1,22 @@
+.brand {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 4px;
+
+    .icon-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+
+        .icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+            margin-bottom: 12px;
+        }
+    }
+
+    .select-field {
+        flex-grow: 2;
+    }
+}

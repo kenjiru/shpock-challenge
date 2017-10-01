@@ -15,7 +15,7 @@ import SearchHint from "../search-hint/SearchHint";
 import Category from "../filters/sections/Category";
 import Price from "../filters/sections/Price";
 
-import "./Page.css";
+import "./Page.scss";
 
 class Page extends Component<IPageProps, IPageState> {
     public static defaultCarDetails: ICarDetails = {

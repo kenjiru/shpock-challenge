@@ -6,7 +6,7 @@ import { grey700 } from "material-ui/styles/colors";
 
 import RaisedContainer from "../raised-container/RaisedContainer";
 
-import "./RaisedCheckbox.css";
+import "./RaisedCheckbox.scss";
 
 class RaisedCheckbox extends Component<CheckboxProps> {
     public static CLASS_NAME: string = "raised-checkbox";

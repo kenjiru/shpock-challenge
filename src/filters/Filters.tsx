@@ -13,7 +13,7 @@ import Location from "./sections/Location";
 import CarDetails, { ICarDetails } from "./sections/car-details/CarDetails";
 import ActionButtons from "../action-buttons/ActionButtons";
 
-import "./Filters.css";
+import "./Filters.scss";
 
 class Filters extends Component<IFiltersProps> {
     public static DEFAULT_RANGE: string = "24h";

@@ -6,7 +6,7 @@ import { MuiTheme } from "material-ui/styles";
 import muiThemeable from "material-ui/styles/muiThemeable";
 import { grey300 } from "material-ui/styles/colors";
 
-import "./RaisedContainer.css";
+import "./RaisedContainer.scss";
 
 export class RaisedContainer extends Component<IRaisedContainerProps> {
     public static CLASS_NAME: string = "raised-container";

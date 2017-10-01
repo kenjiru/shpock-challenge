@@ -5,7 +5,7 @@ import { FontIcon } from "material-ui";
 import { MuiTheme } from "material-ui/styles";
 import muiThemeable from "material-ui/styles/muiThemeable";
 
-import "./ErrorMessage.css";
+import "./ErrorMessage.scss";
 
 export class ErrorMessage extends Component<IErrorMessageProps> {
     public static ERROR_TEXT_CLASS: string = "error-text";

@@ -2,7 +2,7 @@ import * as React from "react";
 import { Component, ReactElement } from "react";
 import { Grid, Row, Col } from "react-flexbox-grid";
 
-import "./Header.css";
+import "./Header.scss";
 
 class Header extends Component<{}> {
     public render(): ReactElement<HTMLElement> {

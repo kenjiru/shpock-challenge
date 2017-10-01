@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Component, ReactElement } from "react";
 
-import "./SearchHint.css";
+import "./SearchHint.scss";
 
 class SearchHint extends Component<ISearchHintProps> {
     public render(): ReactElement<HTMLElement> {
