@@ -7,7 +7,9 @@ import { greenA700 } from "material-ui/styles/colors";
 
 import "react-flexbox-grid/dist/react-flexbox-grid.css";
 
-import Page from "./page/Page";
+import Page from "../page/Page";
+
+import "./App.scss";
 
 export const appMuiTheme: MuiTheme = {
     palette: {
