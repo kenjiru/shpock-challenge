@@ -1,21 +1,8 @@
-.page > .header {
-    background: #45b862;
-}
-
-.page > .header > .header-content {
-    width: 1000px;
-    margin: 0 auto;
-    padding-top: 23px;
-}
-
-.page .header .logo {
-    height: 60px;
-    background: #45b862 url("/img/logo.png") no-repeat;
+.page {
+    padding: 5px;
 }
 
 .page .page-content {
-    width: 1000px;
-    margin: 4px auto;
     padding: 16px;
 }
 

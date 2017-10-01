@@ -5,6 +5,8 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
 import { greenA700 } from "material-ui/styles/colors";
 
+import "react-flexbox-grid/dist/react-flexbox-grid.css";
+
 import Page from "./page/Page";
 
 export const appMuiTheme: MuiTheme = {

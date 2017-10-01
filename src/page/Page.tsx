@@ -2,7 +2,9 @@ import * as _ from "lodash";
 import * as React from "react";
 import { Component, ReactElement } from "react";
 import { Paper } from "material-ui";
+import { Grid, Row, Col } from "react-flexbox-grid";
 
+import Header from "../header/Header";
 import SearchBar from "../search-bar/SearchBar";
 import Filters from "../filters/Filters";
 import { ICarDetails } from "../filters/sections/car-details/CarDetails";
@@ -44,22 +46,26 @@ class Page extends Component<IPageProps, IPageState> {
     public render(): ReactElement<HTMLElement> {
         return (
             <div className="page">
-                <div className="header">
-                    <div className="header-content">
-                        <div className="logo"/>
-                    </div>
-                </div>
-
+                <Header/>
                 <SearchBar
                     searchStr={this.state.searchStr}
                     onChange={this.handleSearchChange}
                     onSubmit={this.handleSubmit}
                 />
-                <Paper className="page-content">
-                    {this.renderHint()}
-                    {this.renderFilters()}
-                    {this.renderJson()}
-                </Paper>
+
+                <Grid>
+                    <Row>
+                        <Col xs={0} md={2} lg={3}/>
+                        <Col xs={12} md={8} lg={6}>
+                            <Paper className="page-content">
+                                {this.renderHint()}
+                                {this.renderFilters()}
+                                {this.renderJson()}
+                            </Paper>
+                        </Col>
+                        <Col xs={0} md={2} lg={3}/>
+                    </Row>
+                </Grid>
             </div>
         );
     }

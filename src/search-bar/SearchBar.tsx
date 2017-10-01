@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Component, ReactElement } from "react";
+import { Grid, Row, Col } from "react-flexbox-grid";
 
 import "./SearchBar.css";
 
@@ -9,16 +10,24 @@ class SearchBar extends Component<ISearchBarProps> {
     public render(): ReactElement<HTMLElement> {
         return (
             <div className="search-bar">
-                <div className="search-bar-content">
-                    <input
-                        className="search-input"
-                        type="text"
-                        placeholder={SearchBar.PLACEHOLDER}
-                        value={this.props.searchStr}
-                        onChange={this.handleChange}
-                        onKeyDown={this.handleKeyDown}
-                    />
-                </div>
+                <Grid>
+                    <Row>
+                        <Col xs={0} md={2} lg={3}/>
+                        <Col xs={12} md={8} lg={6}>
+                            <div className="search-bar-content">
+                                <input
+                                    className="search-input"
+                                    type="text"
+                                    placeholder={SearchBar.PLACEHOLDER}
+                                    value={this.props.searchStr}
+                                    onChange={this.handleChange}
+                                    onKeyDown={this.handleKeyDown}
+                                />
+                            </div>
+                        </Col>
+                        <Col xs={0} md={2} lg={3}/>
+                    </Row>
+                </Grid>
             </div>
         );
     }

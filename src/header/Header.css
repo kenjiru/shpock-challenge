@@ -1,0 +1,9 @@
+.header {
+    background: #45b862;
+}
+
+.header .logo {
+    height: 60px;
+    margin-top: 23px;
+    background: #45b862 url("/img/logo.png") no-repeat;
+}

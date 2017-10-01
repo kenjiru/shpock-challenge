@@ -8,6 +8,7 @@
     "material-ui": "^0.19.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-flexbox-grid": "^1.1.5",
     "react-google-maps": "^8.3.0",
     "react-scripts-ts": "2.7.0",
     "recompose": "^0.25.0",
