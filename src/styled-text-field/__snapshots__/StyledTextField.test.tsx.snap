@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StyledTextField should render correctly 1`] = `
+<TextField
+  disabled={false}
+  floatingLabelFixed={false}
+  floatingLabelStyle={Object {}}
+  fullWidth={false}
+  id="foo"
+  inputStyle={Object {}}
+  multiLine={false}
+  rows={1}
+  type="text"
+  underlineFocusStyle={Object {}}
+  underlineShow={true}
+  underlineStyle={Object {}}
+/>
+`;

@@ -4,7 +4,7 @@ import { TextField, TextFieldProps } from "material-ui";
 import { MuiTheme } from "material-ui/styles";
 import muiThemeable from "material-ui/styles/muiThemeable";
 
-class StyledTextField extends Component<IStyledTextFieldProps> {
+export class StyledTextField extends Component<IStyledTextFieldProps> {
 
     public render(): ReactElement<HTMLElement> {
         let {hasError, muiTheme, ...props} = this.props;
@@ -41,7 +41,7 @@ class StyledTextField extends Component<IStyledTextFieldProps> {
     }
 }
 
-interface IStyledTextFieldProps extends TextFieldProps {
+export interface IStyledTextFieldProps extends TextFieldProps {
     hasError?: boolean;
     muiTheme?: MuiTheme;
 }

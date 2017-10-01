@@ -5,6 +5,7 @@ import { Grid, Row, Col } from "react-flexbox-grid";
 import "./SearchBar.css";
 
 class SearchBar extends Component<ISearchBarProps> {
+    public static SEARCH_INPUT_CLASS: string = "search-input";
     private static PLACEHOLDER: string = "What are you looking for ...";
 
     public render(): ReactElement<HTMLElement> {
@@ -16,7 +17,7 @@ class SearchBar extends Component<ISearchBarProps> {
                         <Col xs={12} md={8} lg={6}>
                             <div className="search-bar-content">
                                 <input
-                                    className="search-input"
+                                    className={SearchBar.SEARCH_INPUT_CLASS}
                                     type="text"
                                     placeholder={SearchBar.PLACEHOLDER}
                                     value={this.props.searchStr}
